@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.blumenstreetdoo.nora_pub.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_beer_on_tap"
+        android:name="com.blumenstreetdoo.nora_pub.ui.beerOnTap.beerOnTapFragment"
+        android:label="@string/title_cans_in_fridge"
+        tools:layout="@layout/fragment_beer_on_tap" />
+
+    <fragment
+        android:id="@+id/navigation_cans_in_fridge"
+        android:name="com.blumenstreetdoo.nora_pub.ui.cansInFridge.CansInFridgeFragment"
+        android:label="@string/title_cans_in_fridge"
+        tools:layout="@layout/fragment_cans_in_fridge" />
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.blumenstreetdoo.nora_pub.ui.favorite.FavoriteFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorite" />
+</navigation>
