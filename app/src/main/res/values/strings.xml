@@ -1,7 +1,18 @@
 <resources>
+    <!-- Fragment Home -->
     <string name="app_name">Nora Pub</string>
     <string name="title_home">Home</string>
     <string name="title_beer_on_tap">Beer on tap</string>
     <string name="title_cans_in_fridge">Cans in fridge</string>
     <string name="title_favorite">Favorite</string>
+    <string name="menu">MENU</string>
+    <string name="untappd">NORA ON UNTAPPD</string>
+    <string name="book_a_table">BOOK A TABLE</string>
+    <string name="about">ABOUT</string>
+    <string name="doo_name">Blumenstreet DOO</string>
+    <string name="city">Podgorica, Montenegro</string>
+    <string name="address">Marka Radovica, 95, 3 Stan</string>
+    <string name="phone">(+382) 068 880088</string>
+    <string name="get_directions">Get directions</string>
+    <string name="instagram">Follow us on Instagram</string>
 </resources>

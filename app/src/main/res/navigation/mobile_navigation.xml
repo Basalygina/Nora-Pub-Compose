@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_beer_on_tap"
-        android:name="com.blumenstreetdoo.nora_pub.ui.beerOnTap.beerOnTapFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.craft.CraftFragment"
         android:label="@string/title_cans_in_fridge"
-        tools:layout="@layout/fragment_beer_on_tap" />
+        tools:layout="@layout/fragment_craft" />
 
     <fragment
         android:id="@+id/navigation_cans_in_fridge"
