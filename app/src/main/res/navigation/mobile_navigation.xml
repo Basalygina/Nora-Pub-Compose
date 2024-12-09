@@ -12,16 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_beer_on_tap"
+        android:id="@+id/navigation_craft"
         android:name="com.blumenstreetdoo.nora_pub.ui.craft.CraftFragment"
-        android:label="@string/title_cans_in_fridge"
+        android:label="@string/title_craft"
         tools:layout="@layout/fragment_craft" />
-
-    <fragment
-        android:id="@+id/navigation_cans_in_fridge"
-        android:name="com.blumenstreetdoo.nora_pub.ui.cansInFridge.CansInFridgeFragment"
-        android:label="@string/title_cans_in_fridge"
-        tools:layout="@layout/fragment_cans_in_fridge" />
 
     <fragment
         android:id="@+id/navigation_favorite"

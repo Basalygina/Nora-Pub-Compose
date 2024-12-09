@@ -1,14 +1,13 @@
 package com.blumenstreetdoo.nora_pub.domain.models
 
-data class Event(
+data class News (
     val id: String,
     val title: String,
     val description: String,
-    val dateTime: String,
     val imageUrl: String,
-    val type: EventType
+    val type: NewsType
 )
 
-enum class EventType {
-    PARTY, DISCOUNT, HAPPY_HOUR
+enum class NewsType {
+    NEW_ARRIVAL, OTHER_NEWS
 }

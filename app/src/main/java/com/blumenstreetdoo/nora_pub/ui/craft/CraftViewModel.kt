@@ -1,13 +1,13 @@
-package com.blumenstreetdoo.nora_pub.ui.cansInFridge
+package com.blumenstreetdoo.nora_pub.ui.craft
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CansInFridgeViewModel : ViewModel() {
+class CraftViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is CansInFridgeFragment"
+        value = "This is CraftFragment"
     }
     val text: LiveData<String> = _text
 }

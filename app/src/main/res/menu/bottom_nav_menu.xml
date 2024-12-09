@@ -7,18 +7,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_beer_on_tap"
+        android:id="@+id/navigation_craft"
         android:icon="@drawable/ic_beer_on_tap_black"
-        android:title="@string/title_beer_on_tap" />
-
-    <item
-        android:id="@+id/navigation_cans_in_fridge"
-        android:icon="@drawable/ic_beer_in_cans_black"
-        android:title="@string/title_cans_in_fridge" />
+        android:title="@string/title_craft" />
 
     <item
         android:id="@+id/navigation_favorite"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_favorites_not_active"
         android:title="@string/title_favorite" />
 
 </menu>

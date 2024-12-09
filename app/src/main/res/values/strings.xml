@@ -2,6 +2,7 @@
     <!-- Fragment Home -->
     <string name="app_name">Nora Pub</string>
     <string name="title_home">Home</string>
+    <string name="title_craft">Craft</string>
     <string name="title_beer_on_tap">Beer on tap</string>
     <string name="title_cans_in_fridge">Cans in fridge</string>
     <string name="title_favorite">Favorite</string>
