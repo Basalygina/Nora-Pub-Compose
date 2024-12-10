@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.cansInFridge
+package com.blumenstreetdoo.nora_pub.ui.craft.cansInFridge
 
 import android.os.Bundle
 import android.view.LayoutInflater

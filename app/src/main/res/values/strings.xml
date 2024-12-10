@@ -6,6 +6,8 @@
     <string name="title_beer_on_tap">Beer on tap</string>
     <string name="title_cans_in_fridge">Cans in fridge</string>
     <string name="title_favorite">Favorite</string>
+    <string name="retry">RETRY</string>
+    <string name="error_message">We lost you</string>
     <string name="menu">MENU</string>
     <string name="untappd">NORA ON UNTAPPD</string>
     <string name="book_a_table">BOOK A TABLE</string>

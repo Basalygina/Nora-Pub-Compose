@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.beerOnTap
+package com.blumenstreetdoo.nora_pub.ui.craft.beerOnTap
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

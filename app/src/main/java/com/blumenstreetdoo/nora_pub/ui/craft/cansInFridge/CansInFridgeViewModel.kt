@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.cansInFridge
+package com.blumenstreetdoo.nora_pub.ui.craft.cansInFridge
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

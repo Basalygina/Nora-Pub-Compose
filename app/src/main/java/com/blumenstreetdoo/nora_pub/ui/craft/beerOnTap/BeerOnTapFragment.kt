@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.beerOnTap
+package com.blumenstreetdoo.nora_pub.ui.craft.beerOnTap
 
 import android.os.Bundle
 import android.view.LayoutInflater
