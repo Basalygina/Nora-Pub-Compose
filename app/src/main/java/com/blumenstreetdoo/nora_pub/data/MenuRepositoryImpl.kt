@@ -1,4 +1,6 @@
 package com.blumenstreetdoo.nora_pub.data
 
-class MenuRepositoryImpl {
+import com.blumenstreetdoo.nora_pub.domain.api.MenuRepository
+
+class MenuRepositoryImpl : MenuRepository {
 }

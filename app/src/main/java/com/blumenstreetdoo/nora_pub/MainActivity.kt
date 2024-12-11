@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            Log.d("NavHostFragment", "Navigated to ${destination.label}")
+            Log.d("NTest", "Navigated to ${destination.label}")
         }
         val appBarConfiguration = AppBarConfiguration(
             setOf(
