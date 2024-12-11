@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blumenstreetdoo.nora_pub.databinding.ItemNewsBinding
+import com.blumenstreetdoo.nora_pub.domain.models.Event
 import com.blumenstreetdoo.nora_pub.domain.models.News
 
 class NewsAdapter(private val news: List<News>,
@@ -21,8 +22,14 @@ class NewsAdapter(private val news: List<News>,
     }
 
     override fun getItemCount() = news.size
-}
 
-fun interface NewsClickListener {
-    fun onNewsClick(news: News)
+    fun updateNews(newNews: List<News>) {
+        (news as MutableList).clear()
+        news.addAll(newNews)
+        notifyDataSetChanged()
+    }
+
+    fun interface NewsClickListener {
+        fun onNewsClick(news: News)
+    }
 }

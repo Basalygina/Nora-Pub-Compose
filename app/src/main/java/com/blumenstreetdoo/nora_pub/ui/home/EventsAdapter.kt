@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blumenstreetdoo.nora_pub.databinding.ItemEventBinding
 import com.blumenstreetdoo.nora_pub.domain.models.Event
 
-class EventsAdapter(private val events: List<Event>,
-                    private val clickListener: EventClickListener,
+class EventsAdapter(
+    private val events: List<Event>,
+    private val clickListener: EventClickListener,
 ) : RecyclerView.Adapter<EventViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val binding = ItemEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,8 +22,14 @@ class EventsAdapter(private val events: List<Event>,
     }
 
     override fun getItemCount() = events.size
-}
 
-fun interface EventClickListener {
-    fun onEventClick(event: Event)
+    fun updateEvents(newEvents: List<Event>) {
+        (events as MutableList).clear()
+        events.addAll(newEvents)
+        notifyDataSetChanged()
+    }
+
+    fun interface EventClickListener {
+        fun onEventClick(event: Event)
+    }
 }
