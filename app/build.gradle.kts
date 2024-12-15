@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.safeargs)
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.blumenstreetdoo.nora_pub"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.blumenstreetdoo.nora_pub"
@@ -52,4 +54,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.io.insert.koin)
+    implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)
+    implementation(libs.viewpager2)
+
+
 }

@@ -32,8 +32,8 @@ class EventNewsRepositoryImpl : EventNewsRepository {
             id = "1",
             title = "Party Night",
             description = "Join us for an amazing party night with live music!",
-            dateTime = "2024-12-31T20:00:00",
-            imageUrl = "https://example.com/party.jpg",
+            dateTime = "Every friday",
+            imageUrl = "https://beertime.bg/wp-content/uploads/2022/10/PModern.webp",
             type = EventType.PARTY
         ),
         Event(
@@ -41,7 +41,15 @@ class EventNewsRepositoryImpl : EventNewsRepository {
             title = "Happy Hour",
             description = "Enjoy 2-for-1 drinks from 5 PM to 7 PM!",
             dateTime = "2024-12-05T17:00:00",
-            imageUrl = "https://example.com/happy_hour.jpg",
+            imageUrl = "https://beertime.bg/wp-content/uploads/2022/10/IIPPAACan.webp",
+            type = EventType.HAPPY_HOUR
+        ),
+        Event(
+            id = "3",
+            title = "NEW Happy Hour",
+            description = "Enjoy 2-for-1 drinks from 5 PM to 7 PM!",
+            dateTime = "2024-12-05T17:00:00",
+            imageUrl = "https://beertime.bg/wp-content/uploads/2022/10/PModern.webp",
             type = EventType.HAPPY_HOUR
         )
     )
@@ -51,14 +59,14 @@ class EventNewsRepositoryImpl : EventNewsRepository {
             id = "1",
             title = "New Arrival: Craft Beers",
             description = "We’ve added new craft beers to our menu. Come and try them!",
-            imageUrl = "https://example.com/craft_beer.jpg",
+            imageUrl = "https://beertime.bg/wp-content/uploads/2022/10/PModern.webp",
             type = NewsType.NEW_ARRIVAL
         ),
         News(
             id = "2",
             title = "Holiday Hours",
             description = "Check out our updated hours for the holiday season.",
-            imageUrl = "https://example.com/holiday_hours.jpg",
+            imageUrl = "https://beertime.bg/wp-content/uploads/2022/10/IIPPAACan.webp",
             type = NewsType.OTHER_NEWS
         )
     )

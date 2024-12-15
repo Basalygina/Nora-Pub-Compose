@@ -1,17 +1,22 @@
 package com.blumenstreetdoo.nora_pub.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.databinding.FragmentHomeBinding
 import com.blumenstreetdoo.nora_pub.domain.models.Event
 import com.blumenstreetdoo.nora_pub.domain.models.News
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
@@ -38,27 +43,49 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             homeViewModel.homeScreenState.collect { state ->
                 when (state) {
+                    HomeScreenState.Loading -> showLoading()
                     is HomeScreenState.Content -> showContent(state.events, state.news)
                     is HomeScreenState.Error -> showError(noInternet = false)
-                    HomeScreenState.Loading -> showLoading()
                     HomeScreenState.NoInternet -> showError(noInternet = true)
                 }
             }
         }
-        binding.rvEvents.adapter = eventsAdapter
-        binding.rvNews.adapter = newsAdapter
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        with(binding) {
+            viewPagerEvents.adapter = eventsAdapter
+            rvNews.adapter = newsAdapter
+            viewPagerEvents.setPageTransformer { page, position ->
+                val scaleFactor = if (position == 0f) {
+                    1f // Первый элемент на полную ширину
+                } else {
+                    0.6f + (1 - Math.abs(position)) * 0.4f // Все остальные элементы меньше
+                }
+                page.scaleX = scaleFactor
+                page.scaleY = scaleFactor
+              //  val scaleFactor = 0.85f + (1 - Math.abs(position)) * 0.15f
+              //  page.scaleX = scaleFactor
+              //  page.scaleY = scaleFactor
+            }
+            TabLayoutMediator(tabDots, viewPagerEvents) { _, _ -> }.attach()
+
+            buttonAbout.setOnClickListener {
+                val scrollViewHeight = scrollView.getChildAt(0).height
+                scrollView.smoothScrollTo(0, scrollViewHeight)
+            }
+
+            buttonUntappd.setOnClickListener {
+                val url = getString(R.string.nora_on_untappd) // Получаем ссылку из ресурсов
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+        }
     }
 
     private fun showLoading() {
         with(binding) {
             overlay.visibility = View.GONE
             errorView.visibility = View.GONE
-            rvEvents.visibility = View.INVISIBLE
+            viewPagerEvents.visibility = View.INVISIBLE
             rvNews.visibility = View.INVISIBLE
             eventsProgressBar.visibility = View.VISIBLE
             newsProgressBar.visibility = View.VISIBLE
@@ -69,7 +96,7 @@ class HomeFragment : Fragment() {
         with(binding) {
             overlay.visibility = View.GONE
             errorView.visibility = View.GONE
-            rvEvents.visibility = View.VISIBLE
+            viewPagerEvents.visibility = View.VISIBLE
             rvNews.visibility = View.VISIBLE
             eventsProgressBar.visibility = View.GONE
             newsProgressBar.visibility = View.GONE
@@ -80,9 +107,13 @@ class HomeFragment : Fragment() {
 
     private fun showError(noInternet: Boolean) {
         with(binding) {
+            if (noInternet) messageError.text =
+                getString(R.string.error_message_no_internet)
+            else messageError.text =
+                getString(R.string.error_message)
             overlay.visibility = View.VISIBLE
             errorView.visibility = View.VISIBLE
-            rvEvents.visibility = View.INVISIBLE
+            viewPagerEvents.visibility = View.INVISIBLE
             rvNews.visibility = View.INVISIBLE
             eventsProgressBar.visibility = View.GONE
             newsProgressBar.visibility = View.GONE
@@ -94,6 +125,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun onEventClick(event: Event) {
-        TODO("Not yet implemented")
+        val action = HomeFragmentDirections.actionNavigationHomeToEventDetailsFragment(event)
+        findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
