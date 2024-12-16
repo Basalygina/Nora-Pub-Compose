@@ -17,10 +17,10 @@ class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             if (currentEvent.imageUrl != null) {
                 Glide.with(eventImage.context)
                     .load(currentEvent.imageUrl)
-                    .placeholder(R.drawable.placeholder_event)
+                    .placeholder(R.drawable.placeholder_nora)
                     .into(eventImage)
             } else {
-                eventImage.setImageResource(R.drawable.placeholder_event)
+                eventImage.setImageResource(R.drawable.placeholder_nora)
             }
         }
     }

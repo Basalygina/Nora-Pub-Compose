@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_eventDetailsFragment"
             app:destination="@id/eventDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +38,15 @@
         <argument
             android:name="event"
             app:argType="com.blumenstreetdoo.nora_pub.domain.models.Event" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.home.details.NewsDetailsFragment"
+        android:label="@string/details"
+        tools:layout="@layout/details_news">
+        <argument
+            android:name="news"
+            app:argType="com.blumenstreetdoo.nora_pub.domain.models.News" />
     </fragment>
 
 </navigation>

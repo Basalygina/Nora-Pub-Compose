@@ -121,7 +121,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun onNewsClick(news: News) {
-        TODO("Not yet implemented")
+        val action = HomeFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
+        findNavController().navigate(action)
     }
 
     private fun onEventClick(event: Event) {
