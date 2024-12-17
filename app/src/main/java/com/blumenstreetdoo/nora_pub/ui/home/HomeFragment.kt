@@ -62,9 +62,9 @@ class HomeFragment : Fragment() {
                 }
                 page.scaleX = scaleFactor
                 page.scaleY = scaleFactor
-              //  val scaleFactor = 0.85f + (1 - Math.abs(position)) * 0.15f
-              //  page.scaleX = scaleFactor
-              //  page.scaleY = scaleFactor
+                //  val scaleFactor = 0.85f + (1 - Math.abs(position)) * 0.15f
+                //  page.scaleX = scaleFactor
+                //  page.scaleY = scaleFactor
             }
             TabLayoutMediator(tabDots, viewPagerEvents) { _, _ -> }.attach()
 
@@ -74,7 +74,26 @@ class HomeFragment : Fragment() {
             }
 
             buttonUntappd.setOnClickListener {
-                val url = getString(R.string.nora_on_untappd) // Получаем ссылку из ресурсов
+                val url = getString(R.string.url_nora_on_untappd)
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+
+            phone.setOnClickListener {
+                val phoneNumber = phone.text.toString()
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:$phoneNumber")
+                }
+                startActivity(intent)
+            }
+            getDirections.setOnClickListener {
+                val url = getString(R.string.url_nora_on_google_maps)
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+
+            instagram.setOnClickListener {
+                val url = getString(R.string.url_nora_on_instagram)
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 startActivity(intent)
             }

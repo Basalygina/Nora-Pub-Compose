@@ -13,7 +13,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
-    <!-- Изображение события -->
     <ImageView
         android:id="@+id/event_image"
         android:layout_width="match_parent"
@@ -27,7 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Заголовок события -->
     <TextView
         android:id="@+id/event_title"
         android:layout_width="wrap_content"
@@ -49,7 +47,6 @@
         app:layout_constraintTop_toBottomOf="@id/horizontal_guideline"
         tools:text="Party Night" />
 
-    <!-- Дата события -->
     <TextView
         android:id="@+id/event_date"
         android:layout_width="wrap_content"

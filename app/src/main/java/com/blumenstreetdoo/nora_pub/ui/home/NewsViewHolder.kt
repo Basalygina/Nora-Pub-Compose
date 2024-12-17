@@ -14,7 +14,8 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(currentNews: News) {
         with(binding) {
-            newsType.visibility = if (currentNews.type == NewsType.NEW_ARRIVAL) View.VISIBLE else View.GONE
+            newsType.visibility =
+                if (currentNews.type == NewsType.NEW_ARRIVAL) View.VISIBLE else View.GONE
             newsTitle.text = currentNews.title
             if (currentNews.imageUrl != null) {
                 Glide.with(newsImage.context)

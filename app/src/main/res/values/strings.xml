@@ -15,13 +15,17 @@
     <string name="about">ABOUT</string>
     <string name="doo_name">Blumenstreet DOO</string>
     <string name="city">Podgorica, Montenegro</string>
-    <string name="address">Marka Radovica, 95, 3 Stan</string>
+    <string name="address">Central Point, Building 3 </string>
     <string name="phone">(+382) 067 884076</string>
     <string name="get_directions">Get directions</string>
     <string name="instagram">Follow us on Instagram</string>
-    <string name="nora_on_untappd">https://untp.beer/WV9Y8</string>
     <string name="new_arrival">NEW ARRIVAL</string>
     <string name="open_hours">Open everyday 4pm - 12am</string>
     <string name="details">Details</string>
     <string name="latest_news">Latest news:</string>
+
+    <!-- URLs -->
+    <string name="url_nora_on_untappd">https://untp.beer/WV9Y8</string>
+    <string name="url_nora_on_instagram">https://www.instagram.com/norapub.pg/</string>
+    <string name="url_nora_on_google_maps">https://maps.app.goo.gl/M55WD4mBf34T6ffC6</string>
 </resources>

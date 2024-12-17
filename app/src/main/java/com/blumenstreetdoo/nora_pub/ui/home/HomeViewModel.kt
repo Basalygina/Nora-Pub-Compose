@@ -27,7 +27,7 @@ class HomeViewModel(
                 val events = eventNewsInteractor.getEvents().first().first
                 val news = eventNewsInteractor.getNews().first().first
 
-                if (events != null && news!= null) {
+                if (events != null && news != null) {
                     _homeScreenState.value = HomeScreenState.Content(events, news)
                 } else {
                     _homeScreenState.value = HomeScreenState.Error("Failed to load data")

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blumenstreetdoo.nora_pub.databinding.ItemNewsBinding
-import com.blumenstreetdoo.nora_pub.domain.models.Event
 import com.blumenstreetdoo.nora_pub.domain.models.News
 
-class NewsAdapter(private val news: List<News>,
-                  private val clickListener: NewsClickListener,
+class NewsAdapter(
+    private val news: List<News>,
+    private val clickListener: NewsClickListener,
 ) : RecyclerView.Adapter<NewsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)

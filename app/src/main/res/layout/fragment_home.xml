@@ -242,6 +242,7 @@
             android:background="@drawable/ic_spinner_background"
             android:dropDownSelector="@color/black"
             android:entries="@array/languages"
+            android:paddingEnd="@dimen/horizontal_margin_medium"
             android:popupBackground="@color/black"
             android:spinnerMode="dropdown"
             android:textColor="@color/white"
@@ -287,6 +288,7 @@
             app:layout_constraintEnd_toEndOf="@id/right_guideline"
             app:layout_constraintStart_toStartOf="@id/left_guideline"
             app:layout_constraintTop_toBottomOf="@id/open_hours" />
+
         <TextView
             android:id="@+id/city"
             android:layout_width="0dp"
@@ -319,6 +321,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
+            android:clickable="true"
             android:text="@string/get_directions"
             android:textAlignment="textStart"
             android:textColor="@color/black"
@@ -333,6 +336,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
             android:layout_marginBottom="@dimen/vertical_margin_large"
+            android:clickable="true"
             android:text="@string/instagram"
             android:textAlignment="textStart"
             android:textColor="@color/black"

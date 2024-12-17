@@ -11,7 +11,7 @@ import com.blumenstreetdoo.nora_pub.databinding.DetailsNewsBinding
 import com.blumenstreetdoo.nora_pub.domain.models.NewsType
 import com.bumptech.glide.Glide
 
-class NewsDetailsFragment : Fragment(){
+class NewsDetailsFragment : Fragment() {
     private val args: NewsDetailsFragmentArgs by navArgs()
     private var _binding: DetailsNewsBinding? = null
     private val binding get() = _binding!!
@@ -29,7 +29,8 @@ class NewsDetailsFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val currentNews = args.news
         with(binding) {
-            newsType.visibility = if (currentNews.type == NewsType.NEW_ARRIVAL) View.VISIBLE else View.GONE
+            newsType.visibility =
+                if (currentNews.type == NewsType.NEW_ARRIVAL) View.VISIBLE else View.GONE
             newsTitle.text = currentNews.title
             newsDescription.text = currentNews.description
             if (currentNews.imageUrl != null) {
