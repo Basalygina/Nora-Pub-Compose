@@ -4,13 +4,13 @@ class Beer(
     id: String,
     name: String,
     type: DrinkType,
-    description: String,
+    description: String?,
     price: Double,
     volume: Int,
     abv: Double,
-    imageUrl: String,
+    imageUrl: String?,
     val brewery: Brewery,
-    val beerIbu: Double, // e.g. 8.0
-    val beerStyleId: String, // e.g. "171"
-    val beerStyle: String, // e.g. "Berliner Weisse"
+    val beerIbu: Int?, // e.g. 8.0
+    val beerStyleId: String?, // e.g. "171"
+    val beerStyle: String?, // e.g. "Berliner Weisse"
 ) : Drink(id, name, type, description, price, volume, abv, imageUrl)

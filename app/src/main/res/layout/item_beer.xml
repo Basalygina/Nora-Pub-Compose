@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/vertical_margin_small">
+
+    <!-- Beer image -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/beer_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/placeholder_nora_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Price & volume -->
+    <LinearLayout
+        android:id="@+id/price_volume_container"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="15.5€" />
+
+        <TextView
+            android:id="@+id/volume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="500 ml" />
+
+    </LinearLayout>
+
+
+    <!-- Header (beer name & brewery) -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin_medium"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@id/price_volume_container"
+        app:layout_constraintStart_toEndOf="@id/beer_image"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/beer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/horizontal_margin_small"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="IIPPAA"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/brewery_single_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_medium"
+            android:layout_marginEnd="@dimen/horizontal_margin_small"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/beer_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="by Brewery" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/brewery_second_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/horizontal_margin_small"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/header_container"
+        app:layout_constraintTop_toBottomOf="@id/header_container"
+        tools:text="by Brewery" />
+
+    <!-- Beer style -->
+    <TextView
+        android:id="@+id/beer_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/horizontal_margin_medium"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/header_container"
+        app:layout_constraintTop_toBottomOf="@id/brewery_second_line"
+        app:layout_goneMarginEnd="80dp"
+        app:layout_goneMarginTop="0dp"
+        tools:text="Berliner Weisse" />
+
+    <!-- Beer characteristics -->
+    <TextView
+        android:id="@+id/beer_abv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/horizontal_margin_medium"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/header_container"
+        app:layout_constraintTop_toBottomOf="@id/beer_style"
+        tools:text="5% ABV" />
+
+    <ImageView
+        android:id="@+id/ellipse_splitter"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_margin_small"
+        android:src="@drawable/ic_ellipse"
+        app:layout_constraintBottom_toBottomOf="@id/beer_abv"
+        app:layout_constraintStart_toEndOf="@id/beer_abv"
+        app:layout_constraintTop_toTopOf="@id/beer_abv" />
+
+    <TextView
+        android:id="@+id/beer_ibu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin_small"
+        android:layout_marginBottom="@dimen/horizontal_margin_medium"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/ellipse_splitter"
+        app:layout_constraintTop_toBottomOf="@id/beer_style"
+        tools:text="28 IBU" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

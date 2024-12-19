@@ -4,8 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.blumenstreetdoo.nora_pub.ui.craft.beerOnTap.BeerOnTapFragment
-import com.blumenstreetdoo.nora_pub.ui.craft.cansInFridge.CansInFridgeFragment
 
 class CraftViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
