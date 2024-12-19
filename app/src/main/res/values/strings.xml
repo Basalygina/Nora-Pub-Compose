@@ -17,8 +17,8 @@
     <string name="city">Podgorica, Montenegro</string>
     <string name="address">Central Point, Building 3 </string>
     <string name="phone">(+382) 067 884076</string>
-    <string name="get_directions">Get directions</string>
-    <string name="instagram">Follow us on Instagram</string>
+    <string name="get_directions"><u>Get directions</u></string>
+    <string name="instagram"><u>Follow us on Instagram</u></string>
     <string name="new_arrival">NEW ARRIVAL</string>
     <string name="open_hours">Open everyday 4pm - 12am</string>
     <string name="details">Details</string>
