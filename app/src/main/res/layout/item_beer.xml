@@ -65,7 +65,6 @@
             android:id="@+id/beer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/horizontal_margin_small"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="IIPPAA"
@@ -78,7 +77,7 @@
             android:id="@+id/brewery_single_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_margin_medium"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
             android:layout_marginEnd="@dimen/horizontal_margin_small"
             android:ellipsize="end"
             android:maxLines="1"
@@ -88,10 +87,7 @@
             app:layout_constraintStart_toEndOf="@id/beer_name"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="by Brewery" />
-
-
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/brewery_second_line"
