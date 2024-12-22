@@ -3,6 +3,7 @@ package com.blumenstreetdoo.nora_pub.ui.craft
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blumenstreetdoo.nora_pub.domain.api.MenuInteractor
+import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -13,6 +14,7 @@ class CraftViewModel(
 ) : ViewModel() {
     private val _craftState = MutableStateFlow<CraftScreenState>(CraftScreenState.Loading)
     val craftState: StateFlow<CraftScreenState> = _craftState
+    private val originalBeerList = mutableListOf<Beer>()
 
     init {
         getFullBeerList()
@@ -24,6 +26,8 @@ class CraftViewModel(
             try {
                 val fullBeerList = menuInteractor.getCraftList().first().first
                 if (fullBeerList != null) {
+                    originalBeerList.clear()
+                    originalBeerList.addAll(fullBeerList)
                     _craftState.value = CraftScreenState.Content(fullBeerList)
                 } else {
                     _craftState.value = CraftScreenState.Error("Failed to load data")
