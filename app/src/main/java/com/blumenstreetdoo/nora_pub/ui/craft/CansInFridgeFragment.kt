@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.databinding.FragmentCansInFridgeBinding
 import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
@@ -43,11 +44,12 @@ class CansInFridgeFragment : Fragment() {
     }
 
     private fun onBeerClick(beer: Beer) {
-        TODO("Not yet implemented")
+        val action = CraftFragmentDirections.actionNavigationCraftToBeerDetailsFragment(beer)
+        findNavController().navigate(action)
     }
 
     private fun showLoading() {
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.VISIBLE
             recycler.visibility = View.GONE
             icError.visibility = View.GONE
@@ -56,7 +58,7 @@ class CansInFridgeFragment : Fragment() {
     }
 
     private fun showContent(fullBeerList: List<Beer>) {
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.GONE
             recycler.visibility = View.VISIBLE
             icError.visibility = View.GONE
@@ -66,7 +68,7 @@ class CansInFridgeFragment : Fragment() {
     }
 
     private fun showError() {
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.GONE
             recycler.visibility = View.GONE
             icError.visibility = View.VISIBLE

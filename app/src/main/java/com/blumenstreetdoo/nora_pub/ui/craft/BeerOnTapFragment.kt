@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.databinding.FragmentBeerOnTapBinding
 import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
@@ -18,9 +19,9 @@ class BeerOnTapFragment : Fragment() {
     private val binding get() = _binding!!
     private val beerAdapter by lazy { BeerAdapter(mutableListOf()) { onBeerClick(it) } }
 
-    private fun onBeerClick(it: Beer) {
-       // val action = HomeFragmentDirections.actionNavigationHomeToNewsDetailsFragment(news)
-       // findNavController().navigate(action)
+    private fun onBeerClick(beer: Beer) {
+        val action = CraftFragmentDirections.actionNavigationCraftToBeerDetailsFragment(beer)
+        findNavController().navigate(action)
     }
 
     private val craftViewModel: CraftViewModel by activityViewModel<CraftViewModel>()
@@ -33,6 +34,7 @@ class BeerOnTapFragment : Fragment() {
         _binding = FragmentBeerOnTapBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
@@ -48,7 +50,7 @@ class BeerOnTapFragment : Fragment() {
     }
 
     private fun showLoading() {
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.VISIBLE
             recycler.visibility = View.GONE
             icError.visibility = View.GONE
@@ -57,7 +59,7 @@ class BeerOnTapFragment : Fragment() {
     }
 
     private fun showContent(fullBeerList: List<Beer>) {
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.GONE
             recycler.visibility = View.VISIBLE
             icError.visibility = View.GONE
@@ -67,7 +69,7 @@ class BeerOnTapFragment : Fragment() {
     }
 
     private fun showError() {
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.GONE
             recycler.visibility = View.GONE
             icError.visibility = View.VISIBLE
