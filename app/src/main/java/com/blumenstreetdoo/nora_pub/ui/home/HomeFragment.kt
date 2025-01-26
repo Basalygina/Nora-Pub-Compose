@@ -68,11 +68,6 @@ class HomeFragment : Fragment() {
             }
             TabLayoutMediator(tabDots, viewPagerEvents) { _, _ -> }.attach()
 
-            buttonAbout.setOnClickListener {
-                val scrollViewHeight = scrollView.getChildAt(0).height
-                scrollView.smoothScrollTo(0, scrollViewHeight)
-            }
-
             buttonUntappd.setOnClickListener {
                 val url = getString(R.string.url_nora_on_untappd)
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
