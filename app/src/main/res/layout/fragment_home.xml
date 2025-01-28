@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white_variant"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +14,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="100dp"
         android:text="@string/book_a_table"
-        app:backgroundTint="@color/yellow" />
+        app:backgroundTint="@color/yellow_accent" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
@@ -31,11 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="#99000000"
-                android:backgroundTintMode="add"
                 android:elevation="4dp"
                 android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHeight_percent="1"
-                tools:ignore="MissingConstraints"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="-16dp"
                 tools:layout_editor_absoluteY="48dp" />
 
@@ -81,14 +82,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabBackground="@color/black"
                 app:tabGravity="fill"
-                app:tabIndicatorColor="@color/white"
+                app:tabIndicatorColor="@color/white_variant"
                 app:tabIndicatorHeight="4dp" />
 
             <ProgressBar
                 android:id="@+id/events_progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminateTint="@color/blue"
+                android:indeterminateTint="@color/yellow_accent"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@id/viewPager_events"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
@@ -123,6 +124,7 @@
 
                 <TextView
                     android:id="@+id/message_error"
+                    style="@style/RegularTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -130,8 +132,6 @@
                     android:elevation="6dp"
                     android:text="@string/error_message"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
                     android:visibility="visible" />
 
                 <TextView
@@ -140,9 +140,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/white_variant"
                     android:clickable="true"
                     android:elevation="6dp"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="@string/retry"
                     android:textAlignment="center"
                     android:textColor="@color/red"
@@ -150,38 +151,37 @@
                     android:visibility="visible" />
             </LinearLayout>
 
-            <Button
+            <TextView
                 android:id="@+id/button_menu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_large"
-                android:background="@drawable/shape_rounded_black_12"
+                android:background="@drawable/shape_accent_12"
                 android:text="@string/menu"
+                android:theme="@style/ButtonStyle"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/viewPager_events"
                 app:layout_constraintWidth_percent="0.30" />
 
-            <Button
+            <TextView
                 android:id="@+id/button_untappd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_large"
-                android:background="@drawable/shape_rounded_black_12"
+                android:background="@drawable/shape_accent_12"
                 android:text="@string/untappd"
+                android:theme="@style/ButtonStyle"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintTop_toBottomOf="@id/viewPager_events"
                 app:layout_constraintWidth_percent="0.58" />
 
             <TextView
                 android:id="@+id/latest_news"
+                style="@style/HeaderTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_XL"
                 android:text="@string/latest_news"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/button_menu" />
@@ -190,20 +190,30 @@
                 android:id="@+id/rv_news"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
-                android:layout_marginTop="@dimen/vertical_margin_large"
+                android:layout_marginTop="@dimen/vertical_margin_small"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:scrollbars="vertical"
+                android:background="@color/white_variant"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/latest_news" />
 
+            <View
+                android:id="@+id/bottom_news_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_light"
+                app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                app:layout_constraintStart_toStartOf="@id/left_guideline"
+                app:layout_constraintTop_toBottomOf="@id/rv_news" />
+
             <ProgressBar
                 android:id="@+id/news_progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminateTint="@color/blue"
+                android:indeterminateTint="@color/yellow_accent"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@id/rv_news"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
@@ -217,7 +227,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="-4dp"
                 android:layout_marginBottom="-8dp"
-                android:background="@color/black"
+                android:background="@color/yellow_light"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@id/open_hours"
                 app:layout_constraintTop_toTopOf="@+id/doo_name" />
@@ -226,13 +236,14 @@
                 android:id="@+id/about_background"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/white"
+                android:background="@color/white_variant"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/doo_background" />
 
             <Spinner
                 android:id="@+id/language_spinner"
+                style="@style/RegularTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/horizontal_margin_medium"
@@ -240,74 +251,62 @@
                 android:dropDownSelector="@color/black"
                 android:entries="@array/languages"
                 android:paddingEnd="@dimen/horizontal_margin_medium"
-                android:popupBackground="@color/black"
+                android:popupBackground="@color/yellow_light"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/white"
                 android:theme="@style/SpinnerStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/doo_name" />
 
             <TextView
                 android:id="@+id/doo_name"
+                style="@style/HeaderTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/vertical_margin_XXL"
+                android:layout_marginTop="@dimen/vertical_margin_XL"
                 android:text="@string/doo_name"
-                android:textAlignment="textStart"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/rv_news" />
 
             <TextView
                 android:id="@+id/open_hours"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/open_hours"
-                android:textAlignment="textStart"
-                android:textColor="@color/white"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/doo_name" />
 
             <TextView
                 android:id="@+id/phone"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/phone"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/open_hours" />
 
             <TextView
                 android:id="@+id/city"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_small"
                 android:text="@string/city"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/phone" />
 
             <TextView
                 android:id="@+id/address"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_small"
                 android:text="@string/address"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/city" />
@@ -315,29 +314,25 @@
 
             <TextView
                 android:id="@+id/get_directions"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_small"
                 android:clickable="true"
                 android:text="@string/get_directions"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
                 app:layout_constraintTop_toBottomOf="@id/address" />
 
             <TextView
                 android:id="@+id/instagram"
+                style="@style/SmallTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vertical_margin_small"
                 android:layout_marginBottom="@dimen/vertical_margin_large"
                 android:clickable="true"
                 android:text="@string/instagram"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/right_guideline"
                 app:layout_constraintStart_toStartOf="@id/left_guideline"
