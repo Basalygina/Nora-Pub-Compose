@@ -28,9 +28,9 @@
 
         <TextView
             android:id="@+id/event_title"
+            style="@style/HeaderTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/event_image"
             android:layout_marginStart="@dimen/horizontal_margin_medium"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="@dimen/vertical_margin_small"
@@ -40,18 +40,15 @@
             android:paddingVertical="2dp"
             android:paddingStart="@dimen/vertical_margin_medium"
             android:paddingEnd="@dimen/vertical_margin_large"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Party Night" />
 
         <TextView
             android:id="@+id/event_date"
+            style="@style/SmallTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/event_title"
             android:layout_marginStart="@dimen/horizontal_margin_medium"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="@dimen/vertical_margin_large"
@@ -59,8 +56,6 @@
             android:paddingVertical="2dp"
             android:paddingStart="@dimen/vertical_margin_medium"
             android:paddingEnd="@dimen/vertical_margin_large"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/event_title"
             tools:text="Every friday" />

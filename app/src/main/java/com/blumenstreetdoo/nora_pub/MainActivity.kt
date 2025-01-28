@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentsNoActionBar = listOf(
             R.id.eventDetailsFragment,
-            R.id.newsDetailsFragment
+            R.id.newsDetailsFragment,
+            R.id.beerDetailsFragment,
         )
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id in fragmentsNoActionBar) {

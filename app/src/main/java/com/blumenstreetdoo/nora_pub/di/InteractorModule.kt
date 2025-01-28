@@ -11,7 +11,7 @@ val interactorModule = module {
         EventNewsInteractorImpl(get())
     }
     factory<MenuInteractor> {
-        MenuInteractorImpl()
+        MenuInteractorImpl(get())
     }
     //single<SharedPreferencesInteractor>(createdAtStart = true) {
     //    SharedPreferencesInteractorImpl(get())
