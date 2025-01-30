@@ -36,6 +36,12 @@
         <item name="fontFamily">@font/product_sans_medium</item>
     </style>
 
+    <style name="ButtonStyleAccent" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/yellow_accent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/product_sans_medium</item>
+    </style>
+
     <style name="SpinnerStyle">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>

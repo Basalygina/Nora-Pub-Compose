@@ -5,4 +5,14 @@
         <item>Srpski</item>
         <item>Русский</item>
     </string-array>
+
+    <array name="default_abv_values">
+        <item>6</item>
+        <item>12</item>
+    </array>
+
+    <array name="default_ibu_values">
+        <item>30</item>
+        <item>60</item>
+    </array>
 </resources>

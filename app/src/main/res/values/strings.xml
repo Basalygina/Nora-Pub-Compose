@@ -34,5 +34,24 @@
     <string name="ABV">%.1f%% ABV</string>
     <string name="IBU">%d IBU</string>
     <string name="volume">%d ml</string>
-    <string name="search">Search</string>
+    <string name="craft_search_helper_text">Search name or style</string>
+    <string name="filter_fragment_title">Filter settings</string>
+
+
+    <!-- Fragment FilterCraft -->
+    <string name="apply">APPLY</string>
+    <string name="select_country">Select country</string>
+    <string name="abv_label">ABV, %</string>
+    <string name="ibu_label">IBU</string>
+
+    <!-- Default countries list -->
+    <string-array name="country_list">
+        <item>USA</item>
+        <item>Germany</item>
+        <item>Belgium</item>
+        <item>Russia</item>
+        <item>Czech Republic</item>
+        <item>England</item>
+    </string-array>
+
 </resources>
