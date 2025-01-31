@@ -54,4 +54,7 @@
         <item>England</item>
     </string-array>
 
+    <!-- Fragment Favorite -->
+    <string name="add_to_fav">Add to favorites</string>
+
 </resources>
