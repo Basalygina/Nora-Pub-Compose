@@ -1,12 +1,13 @@
 package com.blumenstreetdoo.nora_pub
 
 import android.app.Application
+import com.blumenstreetdoo.nora_pub.di.dataModule
+import com.blumenstreetdoo.nora_pub.di.interactorModule
+import com.blumenstreetdoo.nora_pub.di.repositoryModule
+import com.blumenstreetdoo.nora_pub.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import ru.practicum.android.diploma.di.dataModule
-import ru.practicum.android.diploma.di.interactorModule
-import ru.practicum.android.diploma.di.repositoryModule
-import ru.practicum.android.diploma.di.viewModelModule
+
 
 class App : Application() {
 

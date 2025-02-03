@@ -1,9 +1,11 @@
-package ru.practicum.android.diploma.di
+package com.blumenstreetdoo.nora_pub.di
 
 import EventNewsRepositoryImpl
+import com.blumenstreetdoo.nora_pub.data.FavoriteBeerRepositoryImpl
 import com.blumenstreetdoo.nora_pub.data.MenuRepositoryImpl
 import com.blumenstreetdoo.nora_pub.domain.api.EventNewsRepository
 import com.blumenstreetdoo.nora_pub.domain.api.MenuRepository
+import com.blumenstreetdoo.nora_pub.domain.favorite.FavoriteBeerRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -13,7 +15,6 @@ val repositoryModule = module {
     single<MenuRepository> {
         MenuRepositoryImpl()
     }
-    //single<SharedPreferencesRepository> {
-    //    SharedPreferencesRepositoryImpl(get(), get())
-    //}
+
+    single<FavoriteBeerRepository> { FavoriteBeerRepositoryImpl(get()) }
 }

@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavoriteBeerDao {
     @Insert(entity = FavoriteBeerEntity::class, onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addFavoriteBeer(vacancy: FavoriteBeerEntity)
+    suspend fun addFavoriteBeer(beer: FavoriteBeerEntity)
 
     @Query("DELETE FROM favorite_beer_table WHERE id = :id")
     suspend fun deleteFavoriteBeerById(id: String)
 
-    @Query("SELECT * FROM favorite_beer_table ORDER BY id DESC")
+    @Query("SELECT * FROM favorite_beer_table")
     fun getAllFavoriteBeers(): Flow<List<FavoriteBeerEntity>>
 
     @Query("SELECT * FROM favorite_beer_table where id = :id")
