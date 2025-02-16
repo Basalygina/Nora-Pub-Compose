@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_craft_to_beerDetailsFragment"
             app:destination="@id/beerDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_craft_to_craftFilterFragment"
+            app:destination="@id/craftFilterFragment" />
     </fragment>
 
     <fragment
@@ -63,5 +66,10 @@
             android:name="beer"
             app:argType="com.blumenstreetdoo.nora_pub.domain.models.Beer" />
     </fragment>
+    <fragment
+        android:id="@+id/craftFilterFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.craft.CraftFilterFragment"
+        android:label="@string/filter_fragment_title"
+        tools:layout="@layout/fragment_filter"/>
 
 </navigation>

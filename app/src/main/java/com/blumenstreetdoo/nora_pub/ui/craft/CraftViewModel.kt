@@ -14,6 +14,10 @@ class CraftViewModel(
 ) : ViewModel() {
     private val _craftState = MutableStateFlow<CraftScreenState>(CraftScreenState.Loading)
     val craftState: StateFlow<CraftScreenState> = _craftState
+
+    private val _Craft_filterState = MutableStateFlow(CraftFilterState())
+    val craftFilterState: StateFlow<CraftFilterState> = _Craft_filterState
+
     private val originalBeerList = mutableListOf<Beer>()
 
     init {
@@ -36,5 +40,29 @@ class CraftViewModel(
                 _craftState.value = CraftScreenState.Error(e.message ?: "Unknown error")
             }
         }
+    }
+
+    fun updateFilter(newFilter: CraftFilterState) {
+        _Craft_filterState.value = newFilter
+        applyFilters()
+    }
+
+    private fun applyFilters() {
+        val filter = _Craft_filterState.value
+        val filteredList = originalBeerList.filter { beer ->
+            // searchEditText at CraftFragment
+            (filter.searchQuery.isNullOrEmpty() || beer.name.contains(filter.searchQuery, ignoreCase = true)) &&
+                    // parameters from CraftFilterFragment
+                    (filter.breweryName.isNullOrEmpty() || beer.brewery.name.contains(filter.breweryName, ignoreCase = true)) &&
+                    (filter.country.isNullOrEmpty() || beer.brewery.country.equals(filter.country, ignoreCase = true)) &&
+                    // ABV
+                    (filter.minAbv == null || beer.abv >= filter.minAbv) &&
+                    (filter.maxAbv == null || beer.abv <= filter.maxAbv) &&
+                    // IBU
+                    (filter.minIbu == null || (beer.beerIbu != null && beer.beerIbu >= filter.minIbu)) &&
+                    (filter.maxIbu == null || (beer.beerIbu != null && beer.beerIbu <= filter.maxIbu))
+        }
+
+        _craftState.value = CraftScreenState.Content(filteredList)
     }
 }

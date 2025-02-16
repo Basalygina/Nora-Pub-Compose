@@ -1,4 +1,4 @@
-package ru.practicum.android.diploma.di
+package com.blumenstreetdoo.nora_pub.di
 
 import com.blumenstreetdoo.nora_pub.domain.api.EventNewsInteractor
 import com.blumenstreetdoo.nora_pub.domain.api.MenuInteractor
@@ -13,7 +13,4 @@ val interactorModule = module {
     factory<MenuInteractor> {
         MenuInteractorImpl(get())
     }
-    //single<SharedPreferencesInteractor>(createdAtStart = true) {
-    //    SharedPreferencesInteractorImpl(get())
-    //}
 }

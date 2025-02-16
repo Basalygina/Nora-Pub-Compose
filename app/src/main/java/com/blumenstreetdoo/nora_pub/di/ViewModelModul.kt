@@ -1,13 +1,13 @@
-package ru.practicum.android.diploma.di
+package com.blumenstreetdoo.nora_pub.di
 
-import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 import com.blumenstreetdoo.nora_pub.ui.home.HomeViewModel
 import com.blumenstreetdoo.nora_pub.ui.favorite.FavoriteViewModel
 import com.blumenstreetdoo.nora_pub.ui.craft.CraftViewModel
+import org.koin.core.module.dsl.viewModel
 
 val viewModelModule = module {
-    viewModelOf(::HomeViewModel)
-    viewModelOf(::FavoriteViewModel)
-    viewModelOf(::CraftViewModel)
+    viewModel { HomeViewModel(get()) }
+    viewModel { FavoriteViewModel(get()) }
+    viewModel { CraftViewModel(get()) }
 }

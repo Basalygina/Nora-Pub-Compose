@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_variant"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/SmallTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rounded_search"
+        android:elevation="2dp"
+        android:hint="@string/select_country"
+        android:paddingStart="8dp"
+        android:paddingTop="-8dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:endIconMode="dropdown_menu"
+        app:expandedHintEnabled="true"
+        app:hintAnimationEnabled="true">
+
+        <AutoCompleteTextView
+            android:id="@+id/dropdown_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="textAutoComplete"
+            android:paddingTop="24dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/abv_label"
+        style="@style/HeaderTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin_large"
+        android:text="@string/abv_label" />
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/slider_abv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin_small"
+        android:paddingBottom="4dp"
+        android:valueFrom="0"
+        android:valueTo="16"
+        app:labelBehavior="visible"
+        app:thumbColor="@color/yellow_accent"
+        app:thumbElevation="2dp"
+        app:thumbHeight="48dp"
+        app:thumbTrackGapSize="8dp"
+        app:thumbWidth="4dp"
+        app:trackColorActive="@color/yellow_accent"
+        app:trackColorInactive="@color/grey"
+        app:trackHeight="12dp"
+        app:values="@array/default_abv_values" />
+
+    <TextView
+        android:id="@+id/ibu_label"
+        style="@style/HeaderTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin_large"
+        android:text="@string/ibu_label" />
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/slider_ibu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin_small"
+        android:paddingBottom="4dp"
+        android:valueFrom="0"
+        android:valueTo="100"
+        app:labelBehavior="visible"
+        app:thumbColor="@color/yellow_accent"
+        app:thumbElevation="2dp"
+        app:thumbHeight="48dp"
+        app:thumbTrackGapSize="8dp"
+        app:thumbWidth="4dp"
+        app:trackColorActive="@color/yellow_accent"
+        app:trackColorInactive="@color/grey"
+        app:trackHeight="12dp"
+        app:values="@array/default_ibu_values" />
+
+    <TextView
+        android:id="@+id/btn_apply_filter"
+        style="@style/ButtonStyleAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/vertical_margin_XXL"
+        android:background="@drawable/shape_accent_12"
+        android:text="@string/apply" />
+
+</LinearLayout>
