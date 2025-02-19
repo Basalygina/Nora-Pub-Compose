@@ -16,8 +16,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="80dp"
         android:background="@drawable/shape_rounded_search"
-        android:paddingVertical="@dimen/vertical_margin_small"
         android:elevation="8dp"
+        android:paddingVertical="@dimen/vertical_margin_small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -30,11 +30,11 @@
             android:drawablePadding="@dimen/horizontal_margin_small"
             android:hint="@string/craft_search_helper_text"
             android:inputType="text"
-            android:textCursorDrawable="@drawable/ic_cursor"
             android:paddingStart="@dimen/horizontal_margin_small"
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/grey_variant"
+            android:textCursorDrawable="@drawable/ic_cursor"
             android:textSize="16sp" />
 
         <ImageView
@@ -51,9 +51,10 @@
         android:id="@+id/filter_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white_variant"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/white_variant"
+        android:paddingTop="4dp"
         app:layout_constraintBottom_toBottomOf="@id/search_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/search_view"
@@ -65,19 +66,6 @@
             android:layout_height="24dp"
             android:src="@drawable/ic_filter" />
 
-        <!-- Active filters count -->
-        <TextView
-            android:id="@+id/filter_count"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="top|center"
-            android:layout_marginStart="-8dp"
-            android:background="@drawable/bg_count_circle"
-            android:gravity="center"
-            tools:text="2"
-            android:textColor="@android:color/white"
-            android:textSize="10sp"
-            android:visibility="gone" />
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
