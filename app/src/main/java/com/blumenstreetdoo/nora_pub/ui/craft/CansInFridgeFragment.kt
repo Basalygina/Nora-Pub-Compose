@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.databinding.FragmentCansInFridgeBinding
 import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -31,12 +34,16 @@ class CansInFridgeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-            craftViewModel.craftState.collect { state ->
-                when (state) {
-                    CraftScreenState.Loading -> showLoading()
-                    is CraftScreenState.Content -> showContent(state.fullBeerList)
-                    is CraftScreenState.Error -> showError()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                craftViewModel.craftState.collectLatest { state ->
+                    if (!isAdded || _binding == null) return@collectLatest
+
+                    when (state) {
+                        is CraftScreenState.Content -> showContent(state.fullBeerList)
+                        is CraftScreenState.Error -> showError()
+                        CraftScreenState.Loading -> showLoading()
+                    }
                 }
             }
         }
@@ -81,7 +88,7 @@ class CansInFridgeFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        fun newInstance(): Fragment = CansInFridgeFragment()
-    }
+   companion object {
+       fun newInstance(): Fragment = CansInFridgeFragment()
+   }
 }

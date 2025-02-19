@@ -1,13 +1,15 @@
 package com.blumenstreetdoo.nora_pub.ui.favorite
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.databinding.FragmentFavoriteBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FavoriteFragment : Fragment() {
@@ -23,16 +25,17 @@ class FavoriteFragment : Fragment() {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = FavBeerAdapter{}
+        val adapter = FavBeerAdapter {}
         binding.recycler.adapter = adapter
 
-        favoriteViewModel.favoritesScreenState.observe(viewLifecycleOwner) { state ->
-            Log.d("DTest","favoritesScreenState is $state")
-            renderState(state)
+        viewLifecycleOwner.lifecycleScope.launch {
+            favoriteViewModel.favoritesScreenState.collectLatest { state ->
+                renderState(state)
+            }
         }
-
     }
 
     private fun renderState(state: FavoriteScreenState) {
@@ -49,7 +52,6 @@ class FavoriteFragment : Fragment() {
                     recycler.visibility = View.VISIBLE
                     icError.visibility = View.GONE
                     messageError.visibility = View.GONE
-
                     (recycler.adapter as? FavBeerAdapter)?.updateBeerList(state.favorites)
                 }
                 is FavoriteScreenState.Error -> {
@@ -69,7 +71,6 @@ class FavoriteFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
