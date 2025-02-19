@@ -227,7 +227,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="-4dp"
                 android:layout_marginBottom="-8dp"
-                android:background="@color/yellow_light"
+                android:background="@drawable/gradient_background_yellow_reverse"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@id/open_hours"
                 app:layout_constraintTop_toTopOf="@+id/doo_name" />
@@ -251,7 +251,7 @@
                 android:dropDownSelector="@color/black"
                 android:entries="@array/languages"
                 android:paddingEnd="@dimen/horizontal_margin_medium"
-                android:popupBackground="@color/yellow_light"
+                android:popupBackground="@color/white_variant"
                 android:spinnerMode="dropdown"
                 android:theme="@style/SpinnerStyle"
                 app:layout_constraintEnd_toEndOf="parent"
