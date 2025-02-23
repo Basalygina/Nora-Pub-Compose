@@ -36,6 +36,8 @@ room = "androidx.room:room-ktx:2.6.1"
 room-runtime = "androidx.room:room-runtime:2.6.1"
 room-compiler = "androidx.room:room-compiler:2.6.1"
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+kotlin-dsl = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2"
+kotlin-dsl-viewbinding = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

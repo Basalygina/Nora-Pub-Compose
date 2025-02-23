@@ -36,6 +36,7 @@
     <string name="volume">%d ml</string>
     <string name="craft_search_helper_text">Search name or style</string>
     <string name="filter_fragment_title">Filter settings</string>
+    <string name="no_items_found">Nothing found</string>
 
 
     <!-- Fragment FilterCraft -->
@@ -58,5 +59,7 @@
     <string name="add_to_fav">Add to favorites</string>
     <string name="no_favorites_message">Favorites list is empty</string>
     <string name="share">Share</string>
+    <string name="add_note_hint">Add a note</string>
+    <string name="edit_note_hint">Edit your note</string>
 
 </resources>

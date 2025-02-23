@@ -1,49 +1,56 @@
-package com.blumenstreetdoo.nora_pub.ui.craft.details
+package com.blumenstreetdoo.nora_pub.ui.favorite.details
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.blumenstreetdoo.nora_pub.R
-import com.blumenstreetdoo.nora_pub.data.toFavoriteBeer
-import com.blumenstreetdoo.nora_pub.databinding.DetailsBeerBinding
-import com.blumenstreetdoo.nora_pub.domain.models.Beer
+import com.blumenstreetdoo.nora_pub.databinding.DetailsFavoriteBeerBinding
+import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import com.blumenstreetdoo.nora_pub.ui.favorite.FavoriteViewModel
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class BeerDetailsFragment : Fragment() {
-    private val args: BeerDetailsFragmentArgs by navArgs()
-    private var _binding: DetailsBeerBinding? = null
+class FavoriteBeerDetailsFragment : Fragment() {
+    private val args: FavoriteBeerDetailsFragmentArgs by navArgs()
+    private var _binding: DetailsFavoriteBeerBinding? = null
     private val binding get() = _binding!!
     private val favoriteViewModel: FavoriteViewModel by activityViewModel<FavoriteViewModel>()
-    private val currentBeer: Beer by lazy { args.beer }
+    private val favoriteBeer: FavoriteBeer by lazy { args.favBeer }
     private var favoriteItem: MenuItem? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = DetailsBeerBinding.inflate(inflater, container, false)
+        _binding = DetailsFavoriteBeerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        favoriteViewModel.checkFavorite(currentBeer.id)
+        favoriteViewModel.checkFavorite(favoriteBeer.id)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupMenu()
         setupBeerDetails()
+        setupNoteInput()
     }
 
     private fun setupMenu() {
@@ -71,7 +78,7 @@ class BeerDetailsFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.action_favorite -> {
-                        favoriteViewModel.toggleFavorite(currentBeer.toFavoriteBeer())
+                        favoriteViewModel.toggleFavorite(favoriteBeer)
                         true
                     }
                     R.id.action_share -> {
@@ -91,10 +98,25 @@ class BeerDetailsFragment : Fragment() {
         )
     }
 
+    private fun shareBeerDetails() {
+        val shareText = buildString {
+            append("${favoriteBeer.name} — ${favoriteBeer.brewery.name}\n")
+            append(getString(R.string.ABV, favoriteBeer.abv))
+            favoriteBeer.beerIbu?.let { append("\n${getString(R.string.IBU, it)}") }
+            append("\n\n${favoriteBeer.description}")
+        }
+
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, shareText)
+        }
+        startActivity(Intent.createChooser(intent, getString(R.string.share)))
+    }
+
     private fun setupBeerDetails() {
         with(binding) {
-            name.text = currentBeer.name
-            beerDescription.text = currentBeer.description
+            name.text = favoriteBeer.name
+            beerDescription.text = favoriteBeer.description
 
             setupBreweryText()
             setupBeerStyle()
@@ -105,23 +127,23 @@ class BeerDetailsFragment : Fragment() {
 
     private fun setupBreweryText() {
         with(binding) {
-            if (currentBeer.name.length + currentBeer.brewery.name.length > 40) {
+            if (favoriteBeer.name.length + favoriteBeer.brewery.name.length > 40) {
                 brewerySecondLine.visibility = View.VISIBLE
                 brewerySingleLine.visibility = View.INVISIBLE
-                brewerySecondLine.text = getString(R.string.by_brewery, currentBeer.brewery.name)
+                brewerySecondLine.text = getString(R.string.by_brewery, favoriteBeer.brewery.name)
             } else {
                 brewerySecondLine.visibility = View.GONE
                 brewerySingleLine.visibility = View.VISIBLE
-                brewerySingleLine.text = getString(R.string.by_brewery, currentBeer.brewery.name)
+                brewerySingleLine.text = getString(R.string.by_brewery, favoriteBeer.brewery.name)
             }
         }
     }
 
     private fun setupBeerStyle() {
         with(binding) {
-            if (currentBeer.beerStyle != null) {
+            if (favoriteBeer.beerStyle != null) {
                 style.visibility = View.VISIBLE
-                style.text = currentBeer.beerStyle
+                style.text = favoriteBeer.beerStyle
             } else {
                 style.visibility = View.GONE
             }
@@ -130,22 +152,36 @@ class BeerDetailsFragment : Fragment() {
 
     private fun setupBeerDetailsValues() {
         with(binding) {
-            beerAbv.text = getString(R.string.ABV, currentBeer.abv)
+            beerAbv.text = getString(R.string.ABV, favoriteBeer.abv)
 
-            if (currentBeer.beerIbu != null) {
+            if (favoriteBeer.beerIbu != null) {
                 beerIbu.visibility = View.VISIBLE
-                beerIbu.text = getString(R.string.IBU, currentBeer.beerIbu)
+                beerIbu.text = getString(R.string.IBU, favoriteBeer.beerIbu)
             } else {
                 beerIbu.visibility = View.GONE
             }
         }
     }
 
+
+    private fun setupNoteInput() {
+        with(binding){
+            noteEditText.setText(favoriteBeer.note)
+            noteEditText.doOnTextChanged { text, _, _, _ ->
+                binding.noteInputLayout.hint = if (text.isNullOrEmpty()) {
+                    getString(R.string.add_note_hint) // Если поле пустое
+                } else {
+                    getString(R.string.edit_note_hint) // Если есть текст
+                }
+                saveNote(text.toString())
+            }
+        }
+    }
     private fun setupBeerImage() {
         with(binding) {
-            if (currentBeer.imageUrl != null) {
+            if (favoriteBeer.imageUrl != null) {
                 Glide.with(image.context)
-                    .load(currentBeer.imageUrl)
+                    .load(favoriteBeer.imageUrl)
                     .placeholder(R.drawable.placeholder_nora)
                     .into(image)
             } else {
@@ -154,19 +190,11 @@ class BeerDetailsFragment : Fragment() {
         }
     }
 
-    private fun shareBeerDetails() {
-        val shareText = buildString {
-            append("${currentBeer.name} — ${currentBeer.brewery.name}\n")
-            append(getString(R.string.ABV, currentBeer.abv))
-            currentBeer.beerIbu?.let { append("\n${getString(R.string.IBU, it)}") }
-            append("\n\n${currentBeer.description}")
-        }
 
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, shareText)
+    private fun saveNote(note: String) {
+        lifecycleScope.launch {
+            favoriteViewModel.updateFavoriteNote(favoriteBeer.id, note)
         }
-        startActivity(Intent.createChooser(intent, getString(R.string.share)))
     }
 
     override fun onDestroyView() {

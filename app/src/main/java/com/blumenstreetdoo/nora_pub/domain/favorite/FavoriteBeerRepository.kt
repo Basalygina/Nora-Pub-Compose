@@ -9,5 +9,6 @@ interface FavoriteBeerRepository {
     suspend fun addFavoriteBeer(favoriteBeer: FavoriteBeer)
     suspend fun deleteFavoriteBeerById(id: String)
     suspend fun isBeerFavorite(id: String): Boolean
+    suspend fun updateFavoriteNote(beerId: String, note: String)
 
 }

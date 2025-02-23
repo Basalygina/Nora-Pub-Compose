@@ -31,4 +31,8 @@ class FavoriteBeerRepositoryImpl(
     override suspend fun isBeerFavorite(id: String): Boolean {
         return dao.isBeerFavorite(id)
     }
+
+    override suspend fun updateFavoriteNote(beerId: String, note: String) {
+        dao.updateNote(beerId, note)
+    }
 }

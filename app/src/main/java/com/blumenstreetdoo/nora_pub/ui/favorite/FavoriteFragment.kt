@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.databinding.FragmentFavoriteBinding
+import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
+import com.blumenstreetdoo.nora_pub.ui.craft.CraftFragmentDirections
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -28,7 +31,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = FavBeerAdapter {}
+        val adapter = FavBeerAdapter { onFavBeerClick(it) }
         binding.recycler.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -36,6 +39,12 @@ class FavoriteFragment : Fragment() {
                 renderState(state)
             }
         }
+    }
+
+    private fun onFavBeerClick(favBeer: FavoriteBeer) {
+        val action = FavoriteFragmentDirections.actionNavigationFavoriteToFavoriteBeerDetailsFragment(favBeer)
+        findNavController().navigate(action)
+
     }
 
     private fun renderState(state: FavoriteScreenState) {

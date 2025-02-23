@@ -47,6 +47,7 @@ class FavBeerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             } else {
                 beerImage.setImageResource(R.drawable.placeholder_nora_large)
             }
+            icNote.visibility = if (favBeer.note != null) View.VISIBLE else View.GONE
         }
     }
 }
