@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.details.EventDetailsFragment">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_guideline"
@@ -134,18 +132,46 @@
         app:layout_constraintTop_toBottomOf="@id/style"
         tools:text="28 IBU" />
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/note_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+        android:layout_marginTop="@dimen/vertical_margin_medium"
+        app:boxBackgroundColor="@color/white"
+        android:visibility="gone"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/beer_abv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/note_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_background_yellow_reverse_rounded"
+            android:hint="@string/add_note_hint"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:textSize="16sp"
+            tools:text="My favorite beer note" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/horizontal_margin_large"
+        android:layout_marginTop="@dimen/vertical_margin_medium"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/beer_abv">
+        app:layout_constraintTop_toBottomOf="@id/note_input_layout">
 
         <TextView
             android:id="@+id/beer_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="@dimen/vertical_margin_large"
             android:paddingEnd="@dimen/vertical_margin_large"
             android:textColor="@android:color/black"

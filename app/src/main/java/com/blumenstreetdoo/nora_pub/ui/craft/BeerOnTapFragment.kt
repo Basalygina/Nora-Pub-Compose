@@ -23,7 +23,7 @@ class BeerOnTapFragment : Fragment() {
     private val beerAdapter by lazy { BeerAdapter(mutableListOf()) { onBeerClick(it) } }
 
     private fun onBeerClick(beer: Beer) {
-        val action = CraftFragmentDirections.actionNavigationCraftToBeerDetailsFragment(beer)
+        val action = CraftFragmentDirections.actionNavigationCraftToBeerDetailsFragment(beer.id)
         findNavController().navigate(action)
     }
 

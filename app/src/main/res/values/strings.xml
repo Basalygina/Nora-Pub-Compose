@@ -60,6 +60,7 @@
     <string name="no_favorites_message">Favorites list is empty</string>
     <string name="share">Share</string>
     <string name="add_note_hint">Add a note</string>
-    <string name="edit_note_hint">Edit your note</string>
+    <string name="edit_note_hint">Your note</string>
+    <string name="beer_removed">Beer was removed from favorites</string>
 
 </resources>

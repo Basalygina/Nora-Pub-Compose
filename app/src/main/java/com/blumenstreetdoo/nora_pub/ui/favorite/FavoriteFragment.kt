@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.databinding.FragmentFavoriteBinding
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
-import com.blumenstreetdoo.nora_pub.ui.craft.CraftFragmentDirections
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -42,7 +41,8 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun onFavBeerClick(favBeer: FavoriteBeer) {
-        val action = FavoriteFragmentDirections.actionNavigationFavoriteToFavoriteBeerDetailsFragment(favBeer)
+        val action =
+            FavoriteFragmentDirections.actionNavigationFavoriteToBeerDetailsFragment(favBeer.id)
         findNavController().navigate(action)
 
     }
@@ -56,6 +56,7 @@ class FavoriteFragment : Fragment() {
                     icError.visibility = View.GONE
                     messageError.visibility = View.GONE
                 }
+
                 is FavoriteScreenState.Content -> {
                     progressBar.visibility = View.GONE
                     recycler.visibility = View.VISIBLE
@@ -63,6 +64,7 @@ class FavoriteFragment : Fragment() {
                     messageError.visibility = View.GONE
                     (recycler.adapter as? FavBeerAdapter)?.updateBeerList(state.favorites)
                 }
+
                 is FavoriteScreenState.Error -> {
                     progressBar.visibility = View.GONE
                     recycler.visibility = View.GONE
@@ -70,6 +72,7 @@ class FavoriteFragment : Fragment() {
                     messageError.visibility = View.VISIBLE
                     messageError.text = state.message
                 }
+
                 is FavoriteScreenState.Empty -> {
                     progressBar.visibility = View.GONE
                     recycler.visibility = View.GONE

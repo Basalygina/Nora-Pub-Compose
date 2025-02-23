@@ -37,8 +37,8 @@
         android:label="@string/title_favorite"
         tools:layout="@layout/fragment_favorite">
         <action
-            android:id="@+id/action_navigation_favorite_to_favoriteBeerDetailsFragment"
-            app:destination="@id/favoriteBeerDetailsFragment" />
+            android:id="@+id/action_navigation_favorite_to_beerDetailsFragment"
+            app:destination="@id/beerDetailsFragment" />
     </fragment>
 
     <fragment
@@ -63,12 +63,12 @@
 
     <fragment
         android:id="@+id/beerDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.craft.details.BeerDetailsFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.details.BeerDetailsFragment"
         android:label="@string/details"
         tools:layout="@layout/details_beer">
         <argument
-            android:name="beer"
-            app:argType="com.blumenstreetdoo.nora_pub.domain.models.Beer" />
+            android:name="beerId"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -80,15 +80,6 @@
             android:name="filterState"
             app:argType="com.blumenstreetdoo.nora_pub.ui.craft.CraftFilterState"
             app:nullable="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/favoriteBeerDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.favorite.details.FavoriteBeerDetailsFragment"
-        android:label="@string/details"
-        tools:layout="@layout/details_favorite_beer">
-        <argument
-            android:name="favBeer"
-            app:argType="com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer" />
     </fragment>
 
 </navigation>

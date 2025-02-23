@@ -47,7 +47,7 @@ class CraftViewModel(
         applyFilters()
     }
 
-    fun applyFilters() {
+    private fun applyFilters() {
         val filter = _craftFilterState.value
         val filteredList = originalBeerList.filter { beer ->
             (filter.searchQuery.isNullOrEmpty() ||
@@ -63,4 +63,7 @@ class CraftViewModel(
 
         _craftState.value = CraftScreenState.Content(filteredList)
     }
+
+    fun getBeerById(beerId: String): Beer? =
+        originalBeerList.firstOrNull { beer -> beer.id == beerId }
 }

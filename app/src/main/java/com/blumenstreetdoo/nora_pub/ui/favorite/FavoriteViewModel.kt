@@ -2,13 +2,13 @@ package com.blumenstreetdoo.nora_pub.ui.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blumenstreetdoo.nora_pub.data.toFavoriteBeer
 import com.blumenstreetdoo.nora_pub.domain.favorite.FavoriteBeerRepository
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -33,7 +33,7 @@ class FavoriteViewModel(
             initialValue = FavoriteScreenState.Loading
         )
 
-    fun checkFavorite(beerId: String) {
+    private fun checkFavorite(beerId: String) {
         viewModelScope.launch {
             _isFavorite.value = repository.isBeerFavorite(beerId)
         }
@@ -55,5 +55,10 @@ class FavoriteViewModel(
         viewModelScope.launch {
             repository.updateFavoriteNote(beerId, note)
         }
+    }
+
+    suspend fun getFavoriteBeerById(beerId: String): FavoriteBeer? {
+        checkFavorite(beerId)
+        return repository.getFavoriteBeerById(beerId).first()
     }
 }
