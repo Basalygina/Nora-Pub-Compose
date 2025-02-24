@@ -1,5 +1,9 @@
 package com.blumenstreetdoo.nora_pub.domain.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class FavoriteBeer(
     val id: String,
     val name: String,
@@ -11,4 +15,4 @@ data class FavoriteBeer(
     val beerStyleId: String?,
     val beerStyle: String?,
     val note: String? = null
-)
+): Parcelable

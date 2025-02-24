@@ -1,49 +1,64 @@
 package com.blumenstreetdoo.nora_pub.ui.favorite
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.blumenstreetdoo.nora_pub.data.toFavoriteBeer
 import com.blumenstreetdoo.nora_pub.domain.favorite.FavoriteBeerRepository
-import com.blumenstreetdoo.nora_pub.domain.models.Beer
+import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(
     private val repository: FavoriteBeerRepository
 ) : ViewModel() {
 
-    private val _isFavorite = MutableLiveData<Boolean>()
-    val isFavorite: LiveData<Boolean> get() = _isFavorite
+    private val _isFavorite = MutableStateFlow(false)
+    val isFavorite: StateFlow<Boolean> get() = _isFavorite.asStateFlow()
 
-    val favoritesScreenState: LiveData<FavoriteScreenState> = repository.getAllFavoriteBeers()
+    val favoritesScreenState: StateFlow<FavoriteScreenState> = repository.getAllFavoriteBeers()
         .map { favorites ->
-            if (favorites.isEmpty())
-                FavoriteScreenState.Empty
-            else
-                FavoriteScreenState.Content(favorites)
+            when {
+                favorites.isEmpty() -> FavoriteScreenState.Empty
+                else -> FavoriteScreenState.Content(favorites)
+            }
         }
-        .asLiveData()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            initialValue = FavoriteScreenState.Loading
+        )
 
-    fun checkFavorite(beerId: String) {
+    private fun checkFavorite(beerId: String) {
         viewModelScope.launch {
-            _isFavorite.postValue(repository.isBeerFavorite(beerId))
-            Log.d("DTest", "Favorite state checked: ${isFavorite.value}")
+            _isFavorite.value = repository.isBeerFavorite(beerId)
         }
     }
 
-    fun toggleFavorite(beer: Beer) {
+    fun toggleFavorite(beer: FavoriteBeer) {
         viewModelScope.launch {
             if (repository.isBeerFavorite(beer.id)) {
                 repository.deleteFavoriteBeerById(beer.id)
-                _isFavorite.postValue(false)
+                _isFavorite.value = false
             } else {
-                repository.addFavoriteBeer(beer.toFavoriteBeer())
-                _isFavorite.postValue(true)
+                repository.addFavoriteBeer(beer)
+                _isFavorite.value = true
             }
         }
+    }
+
+    fun updateFavoriteNote(beerId: String, note: String) {
+        viewModelScope.launch {
+            repository.updateFavoriteNote(beerId, note)
+        }
+    }
+
+    suspend fun getFavoriteBeerById(beerId: String): FavoriteBeer? {
+        checkFavorite(beerId)
+        return repository.getFavoriteBeerById(beerId).first()
     }
 }

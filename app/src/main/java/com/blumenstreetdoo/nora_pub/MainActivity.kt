@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
 
-        menu.findItem(R.id.action_favorite)?.isVisible =
-            navController.currentDestination?.id == R.id.beerDetailsFragment
+        val isBeerDetails = navController.currentDestination?.id == R.id.beerDetailsFragment
+
+        menu.findItem(R.id.action_favorite)?.isVisible = isBeerDetails
+        menu.findItem(R.id.action_share)?.isVisible = isBeerDetails
 
         return true
     }

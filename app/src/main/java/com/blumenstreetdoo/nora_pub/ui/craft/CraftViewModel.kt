@@ -15,13 +15,19 @@ class CraftViewModel(
     private val _craftState = MutableStateFlow<CraftScreenState>(CraftScreenState.Loading)
     val craftState: StateFlow<CraftScreenState> = _craftState
 
-    private val _craftFilterState = MutableStateFlow(CraftFilterState())
-    val craftFilterState: StateFlow<CraftFilterState> = _craftFilterState
-
     private val originalBeerList = mutableListOf<Beer>()
+    val defaultFilterState = CraftFilterState(
+        minAbv = CraftFilterState.MIN_ABV,
+        maxAbv = CraftFilterState.MAX_ABV,
+        minIbu = CraftFilterState.MIN_IBU,
+        maxIbu = CraftFilterState.MAX_IBU
+    )
+    private val _craftFilterState = MutableStateFlow(defaultFilterState)
+    val craftFilterState: StateFlow<CraftFilterState> = _craftFilterState
 
     init {
         getFullBeerList()
+
     }
 
     private fun getFullBeerList() {
@@ -42,19 +48,28 @@ class CraftViewModel(
         }
     }
 
+    fun getBeerById(beerId: String): Beer? =
+        originalBeerList.firstOrNull { beer -> beer.id == beerId }
+
     fun updateFilter(newFilter: CraftFilterState) {
         _craftFilterState.value = newFilter
         applyFilters()
     }
 
-    fun applyFilters() {
+    private fun applyFilters() {
         val filter = _craftFilterState.value
         val filteredList = originalBeerList.filter { beer ->
             (filter.searchQuery.isNullOrEmpty() ||
                     beer.name.contains(filter.searchQuery, ignoreCase = true) ||
                     (beer.beerStyle?.contains(filter.searchQuery, ignoreCase = true) == true)) &&
-                    (filter.breweryName.isNullOrEmpty() || beer.brewery.name.contains(filter.breweryName, ignoreCase = true)) &&
-                    (filter.country.isNullOrEmpty() || beer.brewery.country.equals(filter.country, ignoreCase = true)) &&
+                    (filter.breweryName.isNullOrEmpty() || beer.brewery.name.contains(
+                        filter.breweryName,
+                        ignoreCase = true
+                    )) &&
+                    (filter.country.isNullOrEmpty() || beer.brewery.country.equals(
+                        filter.country,
+                        ignoreCase = true
+                    )) &&
                     (filter.minAbv == null || beer.abv >= filter.minAbv) &&
                     (filter.maxAbv == null || beer.abv <= filter.maxAbv) &&
                     (filter.minIbu == null || (beer.beerIbu != null && beer.beerIbu >= filter.minIbu)) &&
@@ -62,5 +77,9 @@ class CraftViewModel(
         }
 
         _craftState.value = CraftScreenState.Content(filteredList)
+    }
+
+    fun resetFilter() {
+        _craftFilterState.value = defaultFilterState
     }
 }

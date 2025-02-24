@@ -24,4 +24,7 @@ interface FavoriteBeerDao {
     @Query("SELECT EXISTS(SELECT 1 FROM favorite_beer_table WHERE id = :id)")
     suspend fun isBeerFavorite(id: String): Boolean
 
+    @Query("UPDATE favorite_beer_table SET note = :note WHERE id = :beerId")
+    suspend fun updateNote(beerId: String, note: String)
+
 }

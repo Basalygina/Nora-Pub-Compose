@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:backgroundTint="@color/white"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
-    android:backgroundTint="@color/white"
     app:strokeColor="#D1D1D1"
     app:strokeWidth="1dp">
 
@@ -52,10 +52,10 @@
                 android:id="@+id/volume"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/product_sans_medium"
                 android:maxLines="1"
-                android:layout_marginTop="4dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -85,7 +85,7 @@
                 android:text="IIPPAA"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -96,11 +96,11 @@
                 android:layout_marginEnd="@dimen/horizontal_margin_small"
                 android:ellipsize="end"
                 android:fontFamily="@font/product_sans_medium"
-
                 android:maxLines="1"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/price_volume_container"
                 app:layout_constraintStart_toEndOf="@id/beer_name"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="by Brewery" />
@@ -108,7 +108,7 @@
 
         <TextView
             android:id="@+id/brewery_second_line"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/horizontal_margin_small"
             android:ellipsize="end"
@@ -116,8 +116,9 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/price_volume_container"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toBottomOf="@id/header_container"
             tools:text="by Brewery" />
@@ -133,7 +134,8 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/price_volume_container"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toBottomOf="@id/brewery_second_line"
             app:layout_goneMarginEnd="80dp"
@@ -151,7 +153,7 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toBottomOf="@id/beer_style"
             tools:text="5% ABV" />
@@ -178,7 +180,7 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/ellipse_splitter"
             app:layout_constraintTop_toBottomOf="@id/beer_style"
             tools:text="28 IBU" />

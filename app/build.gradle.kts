@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.gson)
+    implementation(libs.kotlin.dsl)
+    implementation(libs.kotlin.dsl.viewbinding)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

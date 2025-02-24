@@ -21,7 +21,7 @@ class BeerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }
             volume.text = context.getString(R.string.volume, beer.volume)
             beerName.text = beer.name
-            if (beer.name.length + beer.brewery.name.length > 30) {
+            if (beer.name.length + beer.brewery.name.length > 20) {
                 brewerySecondLine.visibility = View.VISIBLE
                 brewerySingleLine.visibility = View.INVISIBLE
                 brewerySecondLine.text = context.getString(R.string.by_brewery, beer.brewery.name)

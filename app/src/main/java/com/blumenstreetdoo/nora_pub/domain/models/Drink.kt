@@ -1,15 +1,17 @@
 package com.blumenstreetdoo.nora_pub.domain.models
 
+import java.io.Serializable
+
 open class Drink(
     val id: String, // e.g. "3963"
     val name: String, // e.g. "Festina Peche"
     val type: DrinkType,
-    val description: String, // e.g. "A refreshing neo-BerlinerWeisse fermented with ..."
+    val description: String?, // e.g. "A refreshing neo-BerlinerWeisse fermented with ..."
     val price: Double, // e.g. 5.5
     val volume: Int, // ml, e.g. 300
     val abv: Double, // alcohol by volume, e.g. 4.5
-    val imageUrl: String
-) {
+    val imageUrl: String?
+) : Serializable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Drink) return false
