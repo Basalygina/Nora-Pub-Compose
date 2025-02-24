@@ -1,5 +1,6 @@
 package com.blumenstreetdoo.nora_pub.ui.details
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -19,6 +20,7 @@ import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import com.blumenstreetdoo.nora_pub.ui.craft.CraftViewModel
 import com.blumenstreetdoo.nora_pub.ui.favorite.FavoriteViewModel
 import com.bumptech.glide.Glide
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
@@ -120,7 +122,7 @@ class BeerDetailsFragment : Fragment() {
                 binding.noteInputLayout.visibility = View.VISIBLE
                 binding.noteEditText.setText("")
             }
-            updateFavoriteIcon(favoriteBeer != null) // Обновляем иконку
+            updateFavoriteIcon(favoriteBeer != null)
 
             if (favoriteBeer == null && currentBeer == null) {
                 Snackbar.make(binding.root, getString(R.string.beer_removed), Snackbar.LENGTH_SHORT).show()
@@ -136,6 +138,7 @@ class BeerDetailsFragment : Fragment() {
             beerAbv.text = getString(R.string.ABV, beer.abv)
             beerIbu.text = beer.beerIbu?.let { getString(R.string.IBU, it) }
             noteInputLayout.visibility = View.GONE
+            icDone.visibility = View.GONE
         }
         setupBeerImage(beer.imageUrl)
         setupBeerStyle(beer.beerStyle)
@@ -145,6 +148,7 @@ class BeerDetailsFragment : Fragment() {
         )
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupUIForFavorite(favBeer: FavoriteBeer) {
         with(binding) {
             name.text = favBeer.name
@@ -153,15 +157,36 @@ class BeerDetailsFragment : Fragment() {
             beerIbu.text = favBeer.beerIbu?.let { getString(R.string.IBU, it) }
             noteInputLayout.visibility = View.VISIBLE
             noteEditText.setText(favBeer.note)
+            noteInputLayout.hint = if (noteEditText.text.isNullOrEmpty()) {
+                getString(R.string.add_note_hint)
+            } else {
+                getString(R.string.edit_note_hint)
+
+            }
 
             noteEditText.doOnTextChanged { text, _, _, _ ->
-                binding.noteInputLayout.hint = if (text.isNullOrEmpty()) {
+                icDone.visibility = View.VISIBLE
+
+                noteInputLayout.hint = if (text.isNullOrEmpty()) {
                     getString(R.string.add_note_hint)
                 } else {
                     getString(R.string.edit_note_hint)
+
                 }
+                icDone.visibility = if (text.isNullOrEmpty()) View.GONE else View.VISIBLE
                 favoriteViewModel.updateFavoriteNote(favBeer.id, text.toString())
             }
+
+            noteEditText.setOnFocusChangeListener { _, hasFocus ->
+                icDone.visibility = if (hasFocus && !noteEditText.text.isNullOrEmpty()) View.VISIBLE else View.GONE
+            }
+
+            icDone.setOnClickListener {
+                noteEditText.clearFocus()
+                hideKeyboard(noteEditText)
+                icDone.visibility = View.GONE
+            }
+
         }
         setupBeerImage(favBeer.imageUrl)
         setupBeerStyle(favBeer.beerStyle)
@@ -173,7 +198,7 @@ class BeerDetailsFragment : Fragment() {
 
     private fun setupBreweryText(beerName: String, breweryName: String) {
         with(binding) {
-            if (beerName.length + breweryName.length > 40) {
+            if (beerName.length + breweryName.length > 30) {
                 brewerySecondLine.visibility = View.VISIBLE
                 brewerySingleLine.visibility = View.INVISIBLE
                 brewerySecondLine.text = getString(R.string.by_brewery, breweryName)

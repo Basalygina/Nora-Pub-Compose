@@ -42,6 +42,14 @@
         <item name="fontFamily">@font/product_sans_medium</item>
     </style>
 
+    <style name="ButtonStyleOutlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/yellow_accent</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:textColor">@color/yellow_accent</item>
+        <item name="fontFamily">@font/product_sans_medium</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+
     <style name="SpinnerStyle">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>

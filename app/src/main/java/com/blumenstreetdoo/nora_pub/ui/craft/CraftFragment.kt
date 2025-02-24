@@ -90,20 +90,7 @@ class CraftFragment : Fragment() {
     }
 
     @OptIn(ExperimentalBadgeUtils::class)
-    private fun setupBadge() {
-        if (badgeDrawable == null) {
-            badgeDrawable = BadgeDrawable.create(requireContext()).apply {
-                backgroundColor = ContextCompat.getColor(requireContext(), R.color.yellow_accent)
-                badgeTextColor = ContextCompat.getColor(requireContext(), R.color.white)
-                isVisible = false
-            }
-            BadgeUtils.attachBadgeDrawable(badgeDrawable!!, binding.filterIcon)
-        }
-    }
-
-    @OptIn(ExperimentalBadgeUtils::class)
     private fun updateBadge(filterCount: Int) {
-
         if (badgeDrawable == null) setupBadge()
 
         badgeDrawable?.apply {
@@ -119,6 +106,18 @@ class CraftFragment : Fragment() {
             binding.filterIcon.post {
                 BadgeUtils.attachBadgeDrawable(badgeDrawable!!, binding.filterIcon)
             }
+        }
+    }
+
+    @OptIn(ExperimentalBadgeUtils::class)
+    private fun setupBadge() {
+        if (badgeDrawable == null) {
+            badgeDrawable = BadgeDrawable.create(requireContext()).apply {
+                backgroundColor = ContextCompat.getColor(requireContext(), R.color.yellow_accent)
+                badgeTextColor = ContextCompat.getColor(requireContext(), R.color.white)
+                isVisible = false
+            }
+            BadgeUtils.attachBadgeDrawable(badgeDrawable!!, binding.filterIcon)
         }
     }
 

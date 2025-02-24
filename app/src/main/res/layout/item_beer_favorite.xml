@@ -50,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/vertical_margin_small"
-                android:visibility="gone"
-                android:src="@drawable/ic_note_active" />
+                android:src="@drawable/ic_note_active"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -74,11 +74,11 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/product_sans_medium"
                 android:maxLines="1"
-                tools:text="IIPPAA"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="IIPPAA" />
 
             <TextView
                 android:id="@+id/brewery_single_line"
@@ -92,7 +92,7 @@
                 android:maxLines="1"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/beer_name"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="by Brewery" />
@@ -100,7 +100,7 @@
 
         <TextView
             android:id="@+id/brewery_second_line"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/horizontal_margin_small"
             android:ellipsize="end"
@@ -108,8 +108,9 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/fav_item_container"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toBottomOf="@id/header_container"
             tools:text="by Brewery" />
@@ -125,7 +126,8 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/fav_item_container"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toBottomOf="@id/brewery_second_line"
             app:layout_goneMarginEnd="80dp"
@@ -143,7 +145,7 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toBottomOf="@id/beer_style"
             tools:text="5% ABV" />
@@ -170,7 +172,7 @@
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/ellipse_splitter"
             app:layout_constraintTop_toBottomOf="@id/beer_style"
             tools:text="28 IBU" />
