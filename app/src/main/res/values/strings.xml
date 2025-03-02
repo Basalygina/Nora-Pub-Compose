@@ -10,13 +10,14 @@
     <string name="error_message">..we lost you :(</string>
     <string name="error_message_no_internet">Check internet connection</string>
     <string name="menu">MENU</string>
+    <string name="menu_lowercase">Menu</string>
     <string name="untappd">NORA ON UNTAPPD</string>
     <string name="book_a_table">BOOK A TABLE</string>
     <string name="about">ABOUT</string>
     <string name="doo_name">Blumenstreet DOO</string>
     <string name="city">Podgorica, Montenegro</string>
     <string name="address">Central Point, Building 3 </string>
-    <string name="phone">(+382) 067 884076</string>
+    <string name="phone"><u>(+382) 067 884076</u></string>
     <string name="get_directions"><u>Get directions</u></string>
     <string name="instagram"><u>Follow us on Instagram</u></string>
     <string name="new_arrival">NEW ARRIVAL</string>
@@ -63,5 +64,6 @@
     <string name="edit_note_hint">Your note</string>
     <string name="beer_removed">Beer was removed from favorites</string>
     <string name="reset">RESET</string>
+
 
 </resources>
