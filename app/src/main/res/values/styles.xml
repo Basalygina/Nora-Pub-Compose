@@ -4,14 +4,14 @@
     <style name="RegularTextStyle" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">18sp</item>
         <item name="textAllCaps">false</item>
-        <item name="fontFamily">@font/product_sans_regular</item>
+        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="HeaderTextStyle" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">20sp</item>
         <item name="textAllCaps">false</item>
-        <item name="fontFamily">@font/product_sans_regular</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">textStart</item>
@@ -20,7 +20,7 @@
     <style name="SmallTextStyle" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">16sp</item>
         <item name="textAllCaps">false</item>
-        <item name="fontFamily">@font/product_sans_regular</item>
+        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textAlignment">textStart</item>
     </style>
@@ -33,20 +33,20 @@
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/yellow</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/product_sans_medium</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
     </style>
 
     <style name="ButtonStyleAccent" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/yellow_accent</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/product_sans_medium</item>
+        <item name="fontFamily">@font/open_sans_medium</item>
     </style>
 
     <style name="ButtonStyleOutlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">@color/yellow_accent</item>
         <item name="strokeWidth">2dp</item>
         <item name="android:textColor">@color/yellow_accent</item>
-        <item name="fontFamily">@font/product_sans_medium</item>
+        <item name="fontFamily">@font/open_sans_medium</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
 
