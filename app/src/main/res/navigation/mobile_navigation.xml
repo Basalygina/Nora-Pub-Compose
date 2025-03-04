@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_newsDetailsFragment"
             app:destination="@id/newsDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 
     <fragment
@@ -81,5 +84,9 @@
             app:argType="com.blumenstreetdoo.nora_pub.ui.craft.CraftFilterState"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.home.menu.MenuFragment"
+        android:label="@string/menu_lowercase" />
 
 </navigation>

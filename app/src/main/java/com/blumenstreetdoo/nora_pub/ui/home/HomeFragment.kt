@@ -68,6 +68,11 @@ class HomeFragment : Fragment() {
             }
             TabLayoutMediator(tabDots, viewPagerEvents) { _, _ -> }.attach()
 
+            buttonMenu.setOnClickListener {
+                val action = HomeFragmentDirections.actionNavigationHomeToMenuFragment()
+                findNavController().navigate(action)
+            }
+
             buttonUntappd.setOnClickListener {
                 val url = getString(R.string.url_nora_on_untappd)
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))

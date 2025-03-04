@@ -28,36 +28,33 @@
 
     <TextView
         android:id="@+id/event_title"
+        style="@style/HeaderTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_image"
         android:layout_marginStart="@dimen/horizontal_margin_large"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="@dimen/vertical_margin_small"
-        android:background="@drawable/shape_rounded_white_0"
         android:ellipsize="end"
         android:maxLines="2"
         android:paddingVertical="2dp"
         android:paddingEnd="@dimen/vertical_margin_large"
-        android:textColor="@android:color/black"
-        android:textSize="26sp"
-        android:textStyle="bold"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal_guideline"
         tools:text="Party Night" />
 
     <TextView
         android:id="@+id/event_date"
+        style="@style/HeaderTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/event_title"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="@dimen/vertical_margin_large"
-        android:background="@drawable/shape_rounded_white_0"
         android:paddingVertical="2dp"
         android:paddingEnd="@dimen/vertical_margin_large"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/event_title"
         app:layout_constraintTop_toBottomOf="@id/event_title"
         tools:text="Every friday" />
@@ -71,14 +68,13 @@
 
         <TextView
             android:id="@+id/event_description"
+            style="@style/RegularTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="@dimen/vertical_margin_large"
-            android:background="@drawable/shape_rounded_white_0"
             android:paddingVertical="2dp"
             android:paddingEnd="@dimen/vertical_margin_large"
-            android:textColor="@android:color/black"
             android:textSize="16sp"
             tools:text="Event description\nLine 1\nLine 2\nLine 3" />
     </ScrollView>
