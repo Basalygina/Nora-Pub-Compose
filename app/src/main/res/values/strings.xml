@@ -65,5 +65,15 @@
     <string name="beer_removed">Beer was removed from favorites</string>
     <string name="reset">RESET</string>
 
+    <!-- Fragment Reservation -->
+    <string name="select_date">Select a date</string>
+    <string name="select_time">Select a time</string>
+    <string name="guest_count">Number of guests</string>
+    <string name="confirm_reservation">Confirm reservation</string>
+    <string name="please_select_date_time">Please select date and time before confirming</string>
+    <string name="invalid_guest_count">Invalid number of guests</string>
+    <string name="loading_reservation">Processing reservation...</string>
+    <string name="reservation_success">Reservation confirmed</string>
+
 
 </resources>
