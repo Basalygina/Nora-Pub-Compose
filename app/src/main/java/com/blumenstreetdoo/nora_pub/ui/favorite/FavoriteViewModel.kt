@@ -1,5 +1,6 @@
 package com.blumenstreetdoo.nora_pub.ui.favorite
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blumenstreetdoo.nora_pub.domain.favorite.FavoriteBeerRepository
@@ -20,7 +21,8 @@ class FavoriteViewModel(
     private val _isFavorite = MutableStateFlow(false)
     val isFavorite: StateFlow<Boolean> get() = _isFavorite.asStateFlow()
 
-    val favoritesScreenState: StateFlow<FavoriteScreenState> = repository.getAllFavoriteBeers()
+    val favoritesScreenState: StateFlow<FavoriteScreenState> =
+        repository.getAllFavoriteBeers()
         .map { favorites ->
             when {
                 favorites.isEmpty() -> FavoriteScreenState.Empty
