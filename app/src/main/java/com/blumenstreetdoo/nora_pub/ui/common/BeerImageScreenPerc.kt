@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.favorite
+package com.blumenstreetdoo.nora_pub.ui.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
@@ -8,33 +8,36 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.blumenstreetdoo.nora_pub.R
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun BeerImage(
-    imageUrl: String?,
-    placeholderRes: Int,
+fun BeerImageScreenPerc(
     modifier: Modifier = Modifier,
-    imageSize: Int = 60,
-    startPadding: Int = 12,
-    endPadding: Int = 0,
-    topPadding: Int = 0,
-    bottomPadding: Int = 0,
-    cornerRadius: Int = 8,
+    imageUrl: String?,
+    placeholderRes: Int = R.drawable.placeholder_nora_large,
+    screenPercentage: Float = 0.4f,
     contentScale: ContentScale = ContentScale.Crop,
+    padding: Int = 0,
+    cornerRadius: Int = 0,
     ) {
+    val configuration = LocalConfiguration.current
+    val screenWidthDp = configuration.screenWidthDp.dp
+    val imageSize = screenWidthDp * screenPercentage
+
     if (!imageUrl.isNullOrEmpty()) {
         GlideImage(
             model = imageUrl,
             contentDescription = null,
             contentScale = contentScale,
             modifier = modifier
-                .size(imageSize.dp)
-                .padding(start = startPadding.dp)
+                .size(imageSize)
+                .padding(padding.dp)
                 .clip(RoundedCornerShape(cornerRadius.dp))
         ) {
             it.error(placeholderRes)
@@ -46,8 +49,8 @@ fun BeerImage(
             contentDescription = null,
             contentScale = contentScale,
             modifier = modifier
-                .size(imageSize.dp)
-                .padding(start = startPadding.dp, top = topPadding.dp, bottom = bottomPadding.dp, end = endPadding.dp)
+                .size(imageSize)
+                .padding(padding.dp)
                 .clip(RoundedCornerShape(cornerRadius.dp))
         )
     }

@@ -27,6 +27,14 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.beerDetailsFragment) {
+                supportActionBar?.hide()
+            } else {
+                supportActionBar?.show()
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

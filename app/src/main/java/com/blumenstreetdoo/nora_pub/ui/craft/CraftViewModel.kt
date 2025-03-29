@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blumenstreetdoo.nora_pub.domain.api.MenuInteractor
 import com.blumenstreetdoo.nora_pub.domain.models.Beer
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class CraftViewModel(
@@ -15,7 +17,9 @@ class CraftViewModel(
     private val _craftState = MutableStateFlow<CraftScreenState>(CraftScreenState.Loading)
     val craftState: StateFlow<CraftScreenState> = _craftState
 
-    private val originalBeerList = mutableListOf<Beer>()
+    private val _originalBeerList = MutableStateFlow<List<Beer>>(emptyList())
+    val originalBeerList: StateFlow<List<Beer>> = _originalBeerList
+
     val defaultFilterState = CraftFilterState(
         minAbv = CraftFilterState.MIN_ABV,
         maxAbv = CraftFilterState.MAX_ABV,
@@ -27,7 +31,6 @@ class CraftViewModel(
 
     init {
         getFullBeerList()
-
     }
 
     private fun getFullBeerList() {
@@ -36,9 +39,8 @@ class CraftViewModel(
             try {
                 val fullBeerList = menuInteractor.getCraftList().first().first
                 if (fullBeerList != null) {
-                    originalBeerList.clear()
-                    originalBeerList.addAll(fullBeerList)
-                    _craftState.value = CraftScreenState.Content(fullBeerList)
+                    _originalBeerList.value = fullBeerList
+                    applyFilters()
                 } else {
                     _craftState.value = CraftScreenState.Error("Failed to load data")
                 }
@@ -48,8 +50,9 @@ class CraftViewModel(
         }
     }
 
-    fun getBeerById(beerId: String): Beer? =
-        originalBeerList.firstOrNull { beer -> beer.id == beerId }
+    fun getBeerById(beerId: String): Flow<Beer?> {
+        return originalBeerList.map { list -> list.firstOrNull { it.id == beerId } }
+    }
 
     fun updateFilter(newFilter: CraftFilterState) {
         _craftFilterState.value = newFilter
@@ -58,7 +61,7 @@ class CraftViewModel(
 
     private fun applyFilters() {
         val filter = _craftFilterState.value
-        val filteredList = originalBeerList.filter { beer ->
+        val filteredList = _originalBeerList.value.filter { beer ->
             (filter.searchQuery.isNullOrEmpty() ||
                     beer.name.contains(filter.searchQuery, ignoreCase = true) ||
                     (beer.beerStyle?.contains(filter.searchQuery, ignoreCase = true) == true)) &&
@@ -75,11 +78,11 @@ class CraftViewModel(
                     (filter.minIbu == null || (beer.beerIbu != null && beer.beerIbu >= filter.minIbu)) &&
                     (filter.maxIbu == null || (beer.beerIbu != null && beer.beerIbu <= filter.maxIbu))
         }
-
         _craftState.value = CraftScreenState.Content(filteredList)
     }
 
     fun resetFilter() {
         _craftFilterState.value = defaultFilterState
+        applyFilters()
     }
 }
