@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.R
+import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -33,16 +34,16 @@ class FavoriteFragment : Fragment() {
                 val state by favoriteViewModel.favoritesScreenState.collectAsState()
                 FavoritesScreen(
                     state = state,
-                    onItemClick = { favBeer -> onFavBeerClick(favBeer) },
+                    onItemClick = { beerDetails -> onFavBeerClick(beerDetails) },
                     onIconFavoriteClick = { favBeer -> onIconFavoriteClick(favBeer) }
                 )
             }
         }
     }
 
-    private fun onFavBeerClick(favBeer: FavoriteBeer) {
+    private fun onFavBeerClick(beerDetails: BeerDetails) {
         val action =
-            FavoriteFragmentDirections.actionNavigationFavoriteToBeerDetailsFragment(favBeer.id)
+            FavoriteFragmentDirections.actionNavigationFavoriteToBeerDetailsFragment(beerDetails.id)
         findNavController().navigate(action)
     }
 

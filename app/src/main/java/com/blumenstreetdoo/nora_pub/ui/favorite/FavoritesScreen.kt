@@ -20,13 +20,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.blumenstreetdoo.nora_pub.R
+import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
+import com.blumenstreetdoo.nora_pub.domain.models.toDetails
 
 
 @Composable
 fun FavoritesScreen(
     state: FavoriteScreenState,
-    onItemClick: (FavoriteBeer) -> Unit,
+    onItemClick: (BeerDetails) -> Unit,
     onIconFavoriteClick: (FavoriteBeer) -> Unit
 ) {
     when (state) {
@@ -79,12 +81,13 @@ fun ErrorState(message: String) {
 @Composable
 fun ContentState(
     favorites: List<FavoriteBeer>,
-    onItemClick: (FavoriteBeer) -> Unit,
+    onItemClick: (BeerDetails) -> Unit,
     onIconFavoriteClick: (FavoriteBeer) -> Unit
 ) {
     LazyColumn {
         items(favorites) { favBeer ->
             ItemBeerFavorite(
+                beerDetails = favBeer.toDetails(),
                 favBeer = favBeer,
                 modifier = Modifier,
                 onItemClick = onItemClick,
