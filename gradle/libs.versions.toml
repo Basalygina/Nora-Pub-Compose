@@ -16,6 +16,17 @@ safeargs = "2.8.5"
 gson = "2.10.1"
 ksp = "1.9.10-1.0.13"
 
+glide = "4.15.1"
+glide-compiler = "4.14.2"
+glide-compose = "1.0.0-alpha.1"
+
+koin = "4.0.0"
+viewpager2 = "1.1.0"
+
+room = "2.6.1"
+room-runtime = "2.6.1"
+room-compiler = "2.6.1"
+
 compose-bom = "2025.02.00"
 composeCompiler = "1.5.11"
 activityCompose = "1.10.1"
@@ -34,16 +45,20 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
-io-insert-koin = "io.insert-koin:koin-android:4.0.0"
-glide = "com.github.bumptech.glide:glide:4.15.1"
-glide-compiler = "com.github.bumptech.glide:compiler:4.14.2"
-viewpager2 = "androidx.viewpager2:viewpager2:1.1.0"
-room = "androidx.room:room-ktx:2.6.1"
-room-runtime = "androidx.room:room-runtime:2.6.1"
-room-compiler = "androidx.room:room-compiler:2.6.1"
+
+io-insert-koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide-compiler" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide-compose" }
+
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+
+room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-runtime" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-compiler" }
+
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-kotlin-dsl = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2"
-kotlin-dsl-viewbinding = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2"
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
