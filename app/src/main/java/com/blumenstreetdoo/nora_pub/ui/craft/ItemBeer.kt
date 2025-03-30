@@ -1,7 +1,6 @@
-package com.blumenstreetdoo.nora_pub.ui.favorite
+package com.blumenstreetdoo.nora_pub.ui.craft
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -9,33 +8,34 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.blumenstreetdoo.nora_pub.R
+import androidx.compose.ui.unit.sp
+import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.Brewery
-import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
+import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
 import com.blumenstreetdoo.nora_pub.ui.common.BeerImageDp
 import com.blumenstreetdoo.nora_pub.ui.common.BeerInfoSection
 
 @Composable
-fun ItemBeerFavorite(
+fun ItemBeer(
+    beer: Beer,
     beerDetails: BeerDetails,
-    favBeer: FavoriteBeer,
     modifier: Modifier,
     onItemClick: (BeerDetails) -> Unit,
-    onIconFavoriteClick: (FavoriteBeer) -> Unit
 ) {
     Card(
         modifier = modifier
@@ -73,28 +73,28 @@ fun ItemBeerFavorite(
                 .padding(start = 16.dp)
             )
 
-            // Favorite and Note Icons
+            // Price and volume
             Column(
                 modifier = Modifier
                     .padding(vertical = 8.dp, horizontal = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_favorites_active_red),
-                    contentDescription = "Favorite",
-                    modifier = Modifier
-                        .size(24.dp)
-                        .clickable { onIconFavoriteClick(favBeer) },
+                Text(
+                    text = "${beer.price.toInt()}€",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
-                if (!beerDetails.note.isNullOrEmpty()) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_note_active),
-                        contentDescription = "Note",
-                        modifier = Modifier
-                            .size(24.dp)
-                    )
-                }
+                Text(
+                    text = "${beer.volume} ml",
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
         }
     }
@@ -102,9 +102,25 @@ fun ItemBeerFavorite(
 
 @Preview(showBackground = true)
 @Composable
-fun ItemBeerFavoritePreview() {
+fun ItemBeerPreview() {
     MaterialTheme {
-        ItemBeerFavorite(
+        ItemBeer(
+            beer = Beer(
+                id = "1",
+                name = "IIPPAA",
+                brewery = Brewery(
+                    "1", "Brewery", "Serbia", "1", "1"
+                ),
+                beerStyle = "Berliner Weisse",
+                abv = 5.0,
+                beerIbu = 28,
+                description = "Berliner Weisse",
+                imageUrl = "",
+                type = DrinkType.CANNED_BEER,
+                price = 12.0,
+                volume = 500,
+                beerStyleId = "3"
+            ),
             beerDetails = BeerDetails(
                 id = "1",
                 name = "IIPPAA",
@@ -119,23 +135,8 @@ fun ItemBeerFavoritePreview() {
                 imageUrl = "",
                 isFavorite = true
             ),
-            favBeer = FavoriteBeer(
-                id = "1",
-                name = "IIPPAA",
-                description = "Berliner Weisse",
-                abv = 5.0,
-                imageUrl = null,
-                brewery = Brewery(
-                    "1", "Brewery", "Serbia", "1", "1"
-                ),
-                beerIbu = 28,
-                beerStyleId = "1",
-                beerStyle = "Berliner Weisse",
-                note = "dfd"
-            ),
             modifier = Modifier,
             onItemClick = {},
-            onIconFavoriteClick = {}
         )
     }
 }

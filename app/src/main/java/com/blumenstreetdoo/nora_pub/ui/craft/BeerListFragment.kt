@@ -15,7 +15,7 @@ import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class CansInFridgeFragment : Fragment() {
+class BeerListFragment : Fragment() {
     private val craftViewModel: CraftViewModel by activityViewModel<CraftViewModel>()
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class CansInFridgeFragment : Fragment() {
             MaterialTheme {
                 val state by craftViewModel.craftState.collectAsState()
                 BeerListScreen(
-                    drinkType = DrinkType.CANNED_BEER,
+                    drinkType = DrinkType.TAP_BEER,
                     craftState = state,
                     onBeerClick = {beerDetails -> onBeerClick(beerDetails)}
                 )
@@ -46,7 +46,7 @@ class CansInFridgeFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-   companion object {
-       fun newInstance(): Fragment = CansInFridgeFragment()
-   }
+    companion object {
+        fun newInstance(): Fragment = BeerListFragment()
+    }
 }

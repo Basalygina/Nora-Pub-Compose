@@ -12,7 +12,7 @@ class CraftViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecyc
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> BeerOnTapFragment.newInstance()
+            0 -> BeerListFragment.newInstance()
             else -> CansInFridgeFragment.newInstance()
         }
     }
