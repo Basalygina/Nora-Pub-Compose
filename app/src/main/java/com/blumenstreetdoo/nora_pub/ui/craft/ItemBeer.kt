@@ -81,7 +81,7 @@ fun ItemBeer(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "${beer.price.toInt()}€",
+                    text = "${beer.price}€",
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
