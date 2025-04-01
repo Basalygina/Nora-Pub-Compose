@@ -1,17 +1,19 @@
 package com.blumenstreetdoo.nora_pub.ui.craft
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
 import com.blumenstreetdoo.nora_pub.domain.models.toDetails
+import com.blumenstreetdoo.nora_pub.ui.common.ErrorState
+import com.blumenstreetdoo.nora_pub.ui.common.LoadingState
 
 @Composable
 fun BeerListScreen(
@@ -20,26 +22,16 @@ fun BeerListScreen(
     onBeerClick: (BeerDetails) -> Unit
 ) {
     when (craftState) {
-        is CraftScreenState.Loading -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
-        }
-        is CraftScreenState.Error -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = craftState.message)
-            }
-        }
+        is CraftScreenState.Loading -> LoadingState()
+        is CraftScreenState.Error -> ErrorState(text = craftState.message)
         is CraftScreenState.Content -> {
             val fullBeerList = craftState.fullBeerList
             val filteredList = fullBeerList.filter { it.type == drinkType }
-            BeerListContent(filteredList, onBeerClick)
+            if (filteredList.isEmpty()) {
+                ErrorState(text = stringResource(R.string.no_items_found))
+            } else {
+                BeerListContent(filteredList, onBeerClick)
+            }
         }
     }
 }
@@ -49,8 +41,11 @@ fun BeerListContent(
     beers: List<Beer>,
     onBeerClick: (BeerDetails) -> Unit
 ) {
-    LazyColumn {
-        items(beers) { beer ->
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Top
+    ) {
+        items(beers, key = { it.id }) { beer ->
             ItemBeer(
                 beer = beer,
                 beerDetails = beer.toDetails(),
