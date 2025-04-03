@@ -4,6 +4,7 @@
     <string name="done">Done</string>
     <string name="back">Back</string>
     <string name="details">Details</string>
+    <string name="clear">clear</string>
     <string name="retry">RETRY</string>
 
     <!-- Fragment Home -->
@@ -43,6 +44,7 @@
     <string name="craft_search_helper_text">Search name or style</string>
     <string name="filter_fragment_title">Filter settings</string>
     <string name="no_items_found">Nothing found</string>
+    <string name="filters">Filters</string>
 
 
     <!-- Fragment FilterCraft -->
