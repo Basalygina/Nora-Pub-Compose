@@ -1,6 +1,8 @@
 package com.blumenstreetdoo.nora_pub.ui.craft
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
@@ -11,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -23,16 +26,19 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CraftScreen(
-    craftState: CraftScreenState,
-    filterState: CraftFilterState,
-    onUpdateFilter: (CraftFilterState) -> Unit,
+    craftViewModel: CraftViewModel,
     onBeerClick: (BeerDetails) -> Unit,
-    onFilterClick: () -> Unit
 ) {
+    val craftState by craftViewModel.craftState.collectAsState()
+    val filterState by craftViewModel.craftFilterState.collectAsState()
+    val defaultFilter = craftViewModel.defaultFilterState
+
     var searchQuery by remember { mutableStateOf(filterState.searchQuery ?: "") }
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     val pagerState = rememberPagerState { 2 }
     val coroutineScope = rememberCoroutineScope()
+
+    var showFilterSheet by remember { mutableStateOf(false) }
 
     // Sync tabs with pager
     LaunchedEffect(selectedTabIndex) {
@@ -53,11 +59,11 @@ fun CraftScreen(
                         searchQuery = searchQuery,
                         onQueryChange = { query ->
                             searchQuery = query
-                            onUpdateFilter(filterState.copy(searchQuery = query))
+                            craftViewModel.updateFilter(filterState.copy(searchQuery = query))
                         },
                         onClearClick = {
                             searchQuery = ""
-                            onUpdateFilter(filterState.copy(searchQuery = ""))
+                            craftViewModel.updateFilter(filterState.copy(searchQuery = ""))
                         },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -79,7 +85,7 @@ fun CraftScreen(
                             }
                         }
                     ) {
-                        IconButton(onClick = onFilterClick) {
+                        IconButton(onClick = { showFilterSheet = true }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_filter),
                                 contentDescription = stringResource(R.string.filters)
@@ -118,6 +124,37 @@ fun CraftScreen(
                     drinkType = drinkType,
                     craftState = craftState,
                     onBeerClick = { beerDetails -> onBeerClick(beerDetails) }
+                )
+            }
+        }
+    }
+
+    // Bottom Sheet with filters
+    if (showFilterSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showFilterSheet = false },
+            containerColor = Color.White
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.9f)
+            ) {
+                val context = LocalContext.current
+                val countries = remember {
+                    context.resources.getStringArray(R.array.country_list).toList()
+                }
+                CraftFilterScreen(
+                    filterState = filterState,
+                    defaultFilter = defaultFilter,
+                    countries = countries,
+                    onApply = { newFilter ->
+                        craftViewModel.updateFilter(newFilter)
+                        showFilterSheet = false
+                    },
+                    onReset = {
+                        craftViewModel.resetFilter()
+                    }
                 )
             }
         }

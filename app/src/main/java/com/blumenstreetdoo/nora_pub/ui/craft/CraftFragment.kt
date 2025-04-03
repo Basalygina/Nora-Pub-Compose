@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -30,11 +29,8 @@ class CraftFragment : Fragment() {
         composeView.setContent {
             MaterialTheme {
                 CraftScreen(
-                    craftState = craftViewModel.craftState.collectAsState().value,
-                    filterState = craftViewModel.craftFilterState.collectAsState().value,
-                    onUpdateFilter = { newFilter -> craftViewModel.updateFilter(newFilter) },
+                    craftViewModel = craftViewModel,
                     onBeerClick = { beerDetails -> onBeerClick(beerDetails) },
-                    onFilterClick = { onFilterClick() }
                 )
             }
         }
@@ -44,14 +40,5 @@ class CraftFragment : Fragment() {
         val action =
             CraftFragmentDirections.actionNavigationCraftToBeerDetailsFragment(beerDetails.id)
         findNavController().navigate(action)
-    }
-
-    private fun onFilterClick() {
-        val action =
-            CraftFragmentDirections.actionNavigationCraftToCraftFilterFragment(
-                craftViewModel.craftFilterState.value
-            )
-        findNavController().navigate(action)
-
     }
 }

@@ -50,7 +50,8 @@ fun CraftFilterScreen(
     defaultFilter: CraftFilterState,
     countries: List<String>,
     onApply: (CraftFilterState) -> Unit,
-    onReset: () -> Unit
+    onReset: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var selectedCountry by remember { mutableStateOf(filterState.country.orEmpty()) }
     var abvRange by remember {
@@ -89,11 +90,11 @@ fun CraftFilterScreen(
     val isDefaultFilter = currentFilter == defaultFilter
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         // Dropdown
         CountryDropdown(
@@ -101,7 +102,8 @@ fun CraftFilterScreen(
             countries = countries,
             onCountrySelected = { newCountry ->
                 selectedCountry = newCountry
-            }
+            },
+            modifier = Modifier.padding(bottom = 8.dp)
         )
 
         // ABV RangeSlider
@@ -126,7 +128,7 @@ fun CraftFilterScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 32.dp),
+                .padding(top = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OutlinedButton(
@@ -152,7 +154,8 @@ fun CraftFilterScreen(
 fun CountryDropdown(
     selectedCountry: String,
     countries: List<String>,
-    onCountrySelected: (String) -> Unit
+    onCountrySelected: (String) -> Unit,
+    modifier: Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -160,7 +163,7 @@ fun CountryDropdown(
     var fieldWidth by remember { mutableStateOf(0.dp) }
     val density = LocalDensity.current
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = modifier.fillMaxWidth()) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
