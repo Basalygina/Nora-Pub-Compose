@@ -47,8 +47,8 @@ import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.Brewery
 import com.blumenstreetdoo.nora_pub.ui.common.BeerImageScreenPerc
 import com.blumenstreetdoo.nora_pub.ui.common.BeerInfoSection
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BeerDetailsScreen(
     beerDetails: BeerDetails,
@@ -59,40 +59,11 @@ fun BeerDetailsScreen(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.details)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back),
-                            tint = Color.White
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { onShareClick(beerDetails) }) {
-                        Icon(
-                            Icons.Filled.Share,
-                            contentDescription = stringResource(R.string.share),
-                            tint = Color.White
-                        )
-                    }
-                    IconButton(onClick = onToggleFavorite) {
-                        Icon(
-                            painter = painterResource(
-                                id = if (beerDetails.isFavorite) R.drawable.ic_favorites_active_red
-                                else R.drawable.ic_favorites_not_active
-                            ),
-                            contentDescription = stringResource(R.string.title_favorite),
-                            tint = if (beerDetails.isFavorite) Color.Unspecified else Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Black,
-                    titleContentColor = Color.White
-                )
+            DetailsTopAppBar(
+                onBackClick = onBackClick,
+                onShareClick = { onShareClick(beerDetails) },
+                onToggleFavorite = onToggleFavorite,
+                isFavorite = beerDetails.isFavorite
             )
         }
     ) { paddingValues ->
@@ -142,6 +113,51 @@ fun BeerDetailsScreen(
             )
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun DetailsTopAppBar(
+    onBackClick: () -> Unit,
+    onShareClick: () -> Unit,
+    onToggleFavorite: () -> Unit,
+    isFavorite: Boolean
+) {
+    TopAppBar(
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = NoraColors.onSurface,
+            titleContentColor = NoraColors.surface
+        ),
+        title = { Text(stringResource(R.string.details)) },
+        navigationIcon = {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(R.string.back),
+                    tint = Color.White
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = onShareClick) {
+                Icon(
+                    imageVector = Icons.Filled.Share,
+                    contentDescription = stringResource(R.string.share),
+                    tint = Color.White
+                )
+            }
+            IconButton(onClick = onToggleFavorite) {
+                Icon(
+                    painter = painterResource(
+                        id = if (isFavorite) R.drawable.ic_favorites_active_red
+                        else R.drawable.ic_favorites_not_active
+                    ),
+                    contentDescription = stringResource(R.string.title_favorite),
+                    tint = if (isFavorite) Color.Unspecified else Color.White
+                )
+            }
+        }
+    )
 }
 
 @Composable
