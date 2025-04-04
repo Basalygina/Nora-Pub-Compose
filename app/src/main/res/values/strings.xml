@@ -57,6 +57,7 @@
     <string-array name="country_list">
         <item>USA</item>
         <item>Germany</item>
+        <item>Serbia</item>
         <item>Belgium</item>
         <item>Russia</item>
         <item>Czech Republic</item>
@@ -71,6 +72,7 @@
     <string name="edit_note_hint">Your note</string>
     <string name="beer_removed">Beer was removed from favorites</string>
     <string name="reset">RESET</string>
+    <string name="error_with_beer_details">An error occurred while loading beer data.</string>
 
     <!-- Fragment Reservation -->
     <string name="select_date">Select a date</string>

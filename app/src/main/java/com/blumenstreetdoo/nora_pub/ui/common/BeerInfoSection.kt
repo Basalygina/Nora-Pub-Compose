@@ -12,11 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.Brewery
@@ -29,9 +27,7 @@ fun BeerInfoSection(beerDetails: BeerDetails, modifier: Modifier = Modifier) {
         // Name
         Text(
             text = beerDetails.name,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
+            style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -39,8 +35,7 @@ fun BeerInfoSection(beerDetails: BeerDetails, modifier: Modifier = Modifier) {
         // Brewery
         Text(
             text = "by ${beerDetails.brewery.name}",
-            fontSize = 16.sp,
-            color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -49,8 +44,7 @@ fun BeerInfoSection(beerDetails: BeerDetails, modifier: Modifier = Modifier) {
         if (!beerDetails.beerStyle.isNullOrEmpty()) {
             Text(
                 text = beerDetails.beerStyle,
-                fontSize = 14.sp,
-                color = Color.Black,
+                style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -69,10 +63,7 @@ fun BeerAbvIbuInfo(abv: Double, ibu: Int?) {
     ) {
         Text(
             text = "$abv% ABV",
-            style = MaterialTheme.typography.bodyMedium.copy(
-                fontWeight = FontWeight.Normal,
-                fontSize = 14.sp
-            ),
+            style = MaterialTheme.typography.bodyMedium,
             color = Color.Black
         )
         Icon(
@@ -86,10 +77,7 @@ fun BeerAbvIbuInfo(abv: Double, ibu: Int?) {
         ibu?.let {
             Text(
                 text = "$it IBU",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp
-                ),
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Black
             )
         }

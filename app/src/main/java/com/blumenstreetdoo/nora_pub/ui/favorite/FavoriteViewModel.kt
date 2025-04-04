@@ -43,4 +43,18 @@ class FavoriteViewModel(
             repository.updateFavoriteNote(beerId, note)
         }
     }
+
+    fun removeFavorite(id: String) {
+        viewModelScope.launch {
+            repository.deleteFavoriteBeerById(id)
+        }
+    }
+
+    fun addFavorite(beer: FavoriteBeer) {
+        viewModelScope.launch {
+            repository.addFavoriteBeer(beer)
+        }
+    }
+
+
 }
