@@ -134,7 +134,14 @@ fun CraftFilterScreen(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OutlinedButton(
-                onClick = { onReset() },
+                onClick = {
+                    selectedCountry = defaultFilter.country.orEmpty()
+                    abvRange = (defaultFilter.minAbv ?: MIN_ABV).toFloat()..
+                            (defaultFilter.maxAbv ?: MAX_ABV).toFloat()
+                    ibuRange = (defaultFilter.minIbu ?: MIN_IBU).toFloat()..
+                            (defaultFilter.maxIbu ?: MAX_IBU).toFloat()
+                    onReset()
+                },
                 modifier = Modifier.weight(1f),
                 enabled = !isDefaultFilter
             ) {
