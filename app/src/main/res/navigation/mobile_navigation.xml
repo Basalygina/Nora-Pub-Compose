@@ -19,9 +19,7 @@
         <action
             android:id="@+id/action_navigation_home_to_menuFragment"
             app:destination="@id/menuFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_reservationFragment"
-            app:destination="@id/reservationFragment" />
+
     </fragment>
 
     <fragment
@@ -77,9 +75,5 @@
         android:id="@+id/menuFragment"
         android:name="com.blumenstreetdoo.nora_pub.ui.home.menu.MenuFragment"
         android:label="@string/menu_lowercase" />
-    <fragment
-        android:id="@+id/reservationFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.reservation.ReservationFragment"
-        android:label="@string/reservation_title" />
 
 </navigation>
