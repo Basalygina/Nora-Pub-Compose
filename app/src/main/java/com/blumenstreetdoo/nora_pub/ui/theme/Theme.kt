@@ -13,10 +13,12 @@ import com.blumenstreetdoo.nora_pub.R
 val NoraColors = lightColorScheme(
     primary = Color(0xFFFAAB1A), // yellow_accent
     secondary = Color(0xFFF6DFA7), // yellow
+    tertiary = Color(0xFF81C784), // Material Green 300
     background = Color(0xFFF5F5F5), // white_variant
     error = Color(0xFFF56B6C), // red
     onPrimary = Color(0xFF232F34), // grey_dark
     onSecondary = Color(0xFF212121), // black
+    onTertiary = Color(0xFFF5F5F5), // white_variant
     onBackground = Color(0xFF212121), // black
     surface = Color(0xFFF5F5F5), // white_variant
     onSurface = Color(0xFF212121), // black
