@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class CraftFragment : Fragment() {
@@ -27,7 +29,10 @@ class CraftFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val composeView = view.findViewById<ComposeView>(R.id.compose_view)
         composeView.setContent {
-            MaterialTheme {
+            MaterialTheme(
+                colorScheme = NoraColors,
+                typography = NoraTypography,
+            ) {
                 CraftScreen(
                     craftViewModel = craftViewModel,
                     onBeerClick = { beerDetails -> onBeerClick(beerDetails) },

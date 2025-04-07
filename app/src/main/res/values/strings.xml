@@ -57,6 +57,7 @@
     <string-array name="country_list">
         <item>USA</item>
         <item>Germany</item>
+        <item>Serbia</item>
         <item>Belgium</item>
         <item>Russia</item>
         <item>Czech Republic</item>
@@ -71,15 +72,22 @@
     <string name="edit_note_hint">Your note</string>
     <string name="beer_removed">Beer was removed from favorites</string>
     <string name="reset">RESET</string>
+    <string name="error_with_beer_details">An error occurred while loading beer data.</string>
 
     <!-- Fragment Reservation -->
-    <string name="select_date">Select a date</string>
-    <string name="select_time">Select a time</string>
+    <string name="reservation_title">Reservation</string>
+    <string name="select_date">Select date</string>
+    <string name="select_time">Select time</string>
     <string name="guest_count">Number of guests</string>
     <string name="confirm_reservation">Confirm reservation</string>
-    <string name="please_select_date_time">Please select date and time before confirming</string>
-    <string name="invalid_guest_count">Invalid number of guests</string>
+    <string name="please_select_date">Please select date</string>
+    <string name="please_select_time">Please select time</string>
+    <string name="invalid_guest_count">You can book for 1 to 10 guests.\nFor larger groups, please contact us directly</string>
     <string name="loading_reservation">Processing reservation...</string>
-    <string name="reservation_success">Reservation confirmed</string>
+    <string name="reservation_success">Reservation successful!</string>
+    <string name="date_in_past">Date cannot be in the past</string>
+    <string name="time_in_past">Time cannot be in the past</string>
+    <string name="time_out_of_range">Time must be within the Nora\'s working hours (16:00–23:30)</string>
+    <string name="no_table_available">Unfortunately, there are no available tables at the selected date and time</string>
 
 </resources>

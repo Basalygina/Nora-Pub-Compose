@@ -13,6 +13,8 @@ import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import com.blumenstreetdoo.nora_pub.domain.models.toDetails
 import com.blumenstreetdoo.nora_pub.ui.common.ErrorState
 import com.blumenstreetdoo.nora_pub.ui.common.LoadingState
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
 
 
 @Composable
@@ -52,7 +54,10 @@ fun ContentState(
 @Preview(showBackground = true)
 @Composable
 fun FavoritesScreenPreview() {
-    MaterialTheme {
+    MaterialTheme(
+        colorScheme = NoraColors,
+        typography = NoraTypography,
+    )  {
         FavoritesScreen(FavoriteScreenState.Loading, {}, {})
     }
 }

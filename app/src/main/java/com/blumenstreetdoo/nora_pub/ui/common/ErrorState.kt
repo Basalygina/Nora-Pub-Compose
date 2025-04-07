@@ -26,10 +26,10 @@ fun ErrorState(text: String) {
         Icon(
             painter  = painterResource(R.drawable.ic_error_black),
             contentDescription = null,
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier.size(32.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = text,
             style = MaterialTheme.typography.headlineSmall,

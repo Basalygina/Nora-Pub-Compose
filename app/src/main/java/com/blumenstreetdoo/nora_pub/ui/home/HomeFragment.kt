@@ -1,12 +1,13 @@
 package com.blumenstreetdoo.nora_pub.ui.home
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.platform.ComposeView
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,11 @@ import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.databinding.FragmentHomeBinding
 import com.blumenstreetdoo.nora_pub.domain.models.Event
 import com.blumenstreetdoo.nora_pub.domain.models.News
+import com.blumenstreetdoo.nora_pub.ui.reservation.ReservationBottomSheet
+import com.blumenstreetdoo.nora_pub.ui.reservation.ReservationViewModel
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,14 +31,13 @@ class HomeFragment : Fragment() {
     private val eventsAdapter by lazy { EventsAdapter(mutableListOf()) { onEventClick(it) } }
     private val newsAdapter by lazy { NewsAdapter(mutableListOf()) { onNewsClick(it) } }
     private val homeViewModel: HomeViewModel by viewModel()
-
+    private val reservationViewModel: ReservationViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d("NTest", "HomeFragment onCreateView")
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -73,28 +78,47 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(action)
             }
 
+            buttonBookATable.setOnClickListener {
+                val bottomSheet = BottomSheetDialog(requireContext())
+                val composeView = ComposeView(requireContext()).apply {
+                    setContent {
+                        MaterialTheme(
+                            colorScheme = NoraColors,
+                            typography = NoraTypography
+                        ) {
+                            ReservationBottomSheet(
+                                viewModel = reservationViewModel,
+                                onDismiss = { bottomSheet.dismiss() }
+                            )
+                        }
+                    }
+                }
+                bottomSheet.setContentView(composeView)
+                bottomSheet.show()
+            }
+
             buttonUntappd.setOnClickListener {
                 val url = getString(R.string.url_nora_on_untappd)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(intent)
             }
 
             phone.setOnClickListener {
                 val phoneNumber = phone.text.toString()
                 val intent = Intent(Intent.ACTION_DIAL).apply {
-                    data = Uri.parse("tel:$phoneNumber")
+                    data = "tel:$phoneNumber".toUri()
                 }
                 startActivity(intent)
             }
             getDirections.setOnClickListener {
                 val url = getString(R.string.url_nora_on_google_maps)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(intent)
             }
 
             instagram.setOnClickListener {
                 val url = getString(R.string.url_nora_on_instagram)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                 startActivity(intent)
             }
         }

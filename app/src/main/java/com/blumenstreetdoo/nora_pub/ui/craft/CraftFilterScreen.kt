@@ -103,7 +103,9 @@ fun CraftFilterScreen(
             onCountrySelected = { newCountry ->
                 selectedCountry = newCountry
             },
-            modifier = Modifier.padding(bottom = 8.dp)
+            modifier = Modifier
+                .background(Color.White)
+                .padding(bottom = 8.dp)
         )
 
         // ABV RangeSlider
@@ -132,7 +134,14 @@ fun CraftFilterScreen(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OutlinedButton(
-                onClick = { onReset() },
+                onClick = {
+                    selectedCountry = defaultFilter.country.orEmpty()
+                    abvRange = (defaultFilter.minAbv ?: MIN_ABV).toFloat()..
+                            (defaultFilter.maxAbv ?: MAX_ABV).toFloat()
+                    ibuRange = (defaultFilter.minIbu ?: MIN_IBU).toFloat()..
+                            (defaultFilter.maxIbu ?: MAX_IBU).toFloat()
+                    onReset()
+                },
                 modifier = Modifier.weight(1f),
                 enabled = !isDefaultFilter
             ) {
@@ -167,6 +176,7 @@ fun CountryDropdown(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(Color.White)
                 .onGloballyPositioned { coordinates ->
                     fieldWidth = with(density) { coordinates.size.width.toDp() }
                 }
@@ -176,7 +186,7 @@ fun CountryDropdown(
                 onValueChange = { },
                 label = { Text(stringResource(R.string.select_country)) },
                 trailingIcon = {
-                    Row() {
+                    Row {
                         // Clear button if country is selected
                         if (selectedCountry.isNotEmpty()) {
                             IconButton(onClick = { onCountrySelected("") }) {
