@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.favorite
+package com.blumenstreetdoo.nora_pub.ui.profile
 
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 

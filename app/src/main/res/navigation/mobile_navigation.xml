@@ -33,10 +33,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_favorite"
-        android:name="com.blumenstreetdoo.nora_pub.ui.favorite.FavoriteFragment"
-        android:label="@string/title_favorite"
-        tools:layout="@layout/fragment_favorite">
+        android:id="@+id/navigation_profile"
+        android:name="com.blumenstreetdoo.nora_pub.ui.profile.ProfileFragment"
+        android:label="@string/title_profile">
         <action
             android:id="@+id/action_navigation_favorite_to_beerDetailsFragment"
             app:destination="@id/beerDetailsFragment" />
@@ -44,7 +43,7 @@
 
     <fragment
         android:id="@+id/eventDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.home.details.EventDetailsFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.home.events.EventDetailsFragment"
         android:label="@string/details"
         tools:layout="@layout/details_event">
         <argument
@@ -54,7 +53,7 @@
 
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.home.details.NewsDetailsFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.home.news.NewsDetailsFragment"
         android:label="@string/details"
         tools:layout="@layout/details_news">
         <argument
