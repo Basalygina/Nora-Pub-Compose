@@ -1,8 +1,10 @@
 package com.blumenstreetdoo.nora_pub.di
 
 import androidx.room.Room
+import com.blumenstreetdoo.nora_pub.App
 import com.blumenstreetdoo.nora_pub.data.db.AppDataBase
 import com.google.gson.Gson
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -17,5 +19,7 @@ val dataModule = module {
     single { get<AppDataBase>().favoriteBeerDao() }
 
     single { Gson() }
+
+    single { (androidApplication() as App).dataStore }
 
 }
