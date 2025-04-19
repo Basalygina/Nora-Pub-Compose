@@ -29,12 +29,6 @@ fun FavoritesScreen(
 ) {
 
     Column (modifier = Modifier.padding(16.dp)) {
-        Text(
-            text = stringResource(R.string.my_favorite_craft_beer),
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
         when (state) {
             is FavoriteScreenState.Loading -> LoadingState()
             is FavoriteScreenState.Error -> ErrorState(text = state.message)
@@ -59,6 +53,12 @@ fun ContentState(
     onItemClick: (BeerDetails) -> Unit,
     onIconFavoriteClick: (FavoriteBeer) -> Unit
 ) {
+    Text(
+        text = stringResource(R.string.my_favorite_craft_beer),
+        style = MaterialTheme.typography.headlineSmall,
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
+
     LazyColumn {
         items(favorites) { favBeer ->
             ItemBeerFavorite(
