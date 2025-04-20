@@ -19,7 +19,7 @@ ksp = "2.1.20-2.0.0"
 
 glide = "4.15.1"
 glide-compiler = "4.14.2"
-glide-compose = "1.0.0-alpha.1"
+coil-compose = "2.6.0"
 
 koin = "4.0.0"
 viewpager2 = "1.1.0"
@@ -60,7 +60,7 @@ io-insert-koin = { group = "io.insert-koin", name = "koin-android", version.ref 
 
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide-compiler" }
-glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide-compose" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
 
 viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 

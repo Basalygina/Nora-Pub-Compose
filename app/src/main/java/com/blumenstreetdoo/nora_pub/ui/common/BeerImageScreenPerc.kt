@@ -9,13 +9,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.blumenstreetdoo.nora_pub.R
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun BeerImageScreenPerc(
     modifier: Modifier = Modifier,
@@ -31,18 +31,20 @@ fun BeerImageScreenPerc(
     val imageSize = screenWidthDp * screenPercentage
 
     if (!imageUrl.isNullOrEmpty()) {
-        GlideImage(
-            model = imageUrl,
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(imageUrl)
+                .placeholder(placeholderRes)
+                .error(placeholderRes)
+                .crossfade(true)
+                .build(),
             contentDescription = null,
             contentScale = contentScale,
             modifier = modifier
                 .size(imageSize)
                 .padding(padding.dp)
                 .clip(RoundedCornerShape(cornerRadius.dp))
-        ) {
-            it.error(placeholderRes)
-                .placeholder(placeholderRes)
-        }
+        )
     } else {
         Image(
             painter = painterResource(id = placeholderRes),
