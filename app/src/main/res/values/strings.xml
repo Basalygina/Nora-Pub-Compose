@@ -4,6 +4,7 @@
     <string name="done">Done</string>
     <string name="back">Back</string>
     <string name="save">Save</string>
+    <string name="close">Close</string>
     <string name="details">Details</string>
     <string name="clear">Clear</string>
     <string name="retry">RETRY</string>
@@ -68,8 +69,9 @@
     <string name="newbie">Newbie</string>
     <string name="edit_name">Edit name</string>
     <string name="craft_beer_enthusiast">Craft Beer Enthusiast</string>
-    <string name="my_favorite_craft_beer">Favorite craft beer:</string>
-
+    <string name="choose_avatar">Choose avatar</string>
+    <string name="from_gallery">Choose from gallery</string>
+    <string name="take_photo">Take photo</string>
     <string name="notification_settings">Notification settings</string>
     <string name="notifications_hint">Get notified about news and events?</string>
     <string name="latest_news">Latest news</string>
@@ -83,6 +85,7 @@
     <string name="notification_default_title">Nora Notification</string>
     <string name="notification_default_body">You have a new message</string>
 
+    <string name="my_favorite_craft_beer">Favorite craft beer:</string>
     <string name="add_to_fav">Add to favorites</string>
     <string name="no_favorites_message">Favorites list is empty</string>
     <string name="share">Share</string>
@@ -107,5 +110,6 @@
     <string name="time_in_past">Time cannot be in the past</string>
     <string name="time_out_of_range">Time must be within the Nora\'s working hours (16:00–23:30)</string>
     <string name="no_table_available">Unfortunately, there are no available tables at the selected date and time</string>
+    <string name="profile_photo">Profile photo</string>
 
 </resources>

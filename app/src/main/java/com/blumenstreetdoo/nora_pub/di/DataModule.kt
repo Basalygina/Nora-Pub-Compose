@@ -26,7 +26,7 @@ val dataModule = module {
 
     single<DataStore<Preferences>> {
         PreferenceDataStoreFactory.create {
-            androidContext().applicationContext.preferencesDataStoreFile("user_settings")
+            androidContext().preferencesDataStoreFile("user_settings")
         }
     }
 

@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -28,7 +26,7 @@ class ProfileFragment : Fragment() {
     private val favoriteViewModel: FavoriteViewModel by activityViewModel<FavoriteViewModel>()
     private val profileViewModel: ProfileViewModel by viewModel()
 
-    private val requestPermissionLauncher = registerForActivityResult(
+    private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         profileViewModel.onPermissionResult(isGranted)
@@ -48,12 +46,11 @@ class ProfileFragment : Fragment() {
                     colorScheme = NoraColors,
                     typography = NoraTypography,
                 ) {
-                    val state by favoriteViewModel.favoritesScreenState.collectAsState()
                     ProfileScreen(
                         profileViewModel = profileViewModel,
-                        state = state,
-                        onItemClick = { beerDetails -> onFavBeerClick(beerDetails) },
-                        onIconFavoriteClick = { favBeer -> onIconFavoriteClick(favBeer) }
+                        favoriteViewModel = favoriteViewModel,
+                        onItemClick = ::onFavBeerClick,
+                        onIconFavoriteClick = ::onIconFavoriteClick
                     )
                 }
             }
@@ -62,16 +59,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // init notification-permission state
         profileViewModel.onPermissionResult(hasNotificationPermission())
-
-        // request permission if needed
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
             != PackageManager.PERMISSION_GRANTED
         ) {
-            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
-
     }
 
     private fun hasNotificationPermission(): Boolean {
