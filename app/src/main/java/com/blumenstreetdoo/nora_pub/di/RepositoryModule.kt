@@ -3,6 +3,7 @@ package com.blumenstreetdoo.nora_pub.di
 import EventNewsRepositoryImpl
 import com.blumenstreetdoo.nora_pub.data.FavoriteBeerRepositoryImpl
 import com.blumenstreetdoo.nora_pub.data.MenuRepositoryImpl
+import com.blumenstreetdoo.nora_pub.data.UserSettingsRepository
 import com.blumenstreetdoo.nora_pub.domain.api.EventNewsRepository
 import com.blumenstreetdoo.nora_pub.domain.api.MenuRepository
 import com.blumenstreetdoo.nora_pub.domain.favorite.FavoriteBeerRepository
@@ -17,4 +18,6 @@ val repositoryModule = module {
     }
 
     single<FavoriteBeerRepository> { FavoriteBeerRepositoryImpl(get()) }
+
+    single { UserSettingsRepository(get()) }
 }

@@ -26,7 +26,7 @@ import com.blumenstreetdoo.nora_pub.domain.models.toDetails
 import com.blumenstreetdoo.nora_pub.ui.common.ErrorState
 import com.blumenstreetdoo.nora_pub.ui.common.LoadingState
 import com.blumenstreetdoo.nora_pub.ui.craft.CraftViewModel
-import com.blumenstreetdoo.nora_pub.ui.favorite.FavoriteViewModel
+import com.blumenstreetdoo.nora_pub.ui.profile.FavoriteViewModel
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
 import kotlinx.coroutines.flow.catch

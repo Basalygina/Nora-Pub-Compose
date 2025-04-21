@@ -152,7 +152,7 @@ private fun DetailsTopAppBar(
                         id = if (isFavorite) R.drawable.ic_favorites_active_red
                         else R.drawable.ic_favorites_not_active
                     ),
-                    contentDescription = stringResource(R.string.title_favorite),
+                    contentDescription = stringResource(R.string.title_profile),
                     tint = if (isFavorite) Color.Unspecified else Color.White
                 )
             }

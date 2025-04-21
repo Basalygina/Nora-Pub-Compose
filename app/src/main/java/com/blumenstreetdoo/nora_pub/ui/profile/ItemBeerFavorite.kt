@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.favorite
+package com.blumenstreetdoo.nora_pub.ui.profile
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -39,7 +39,7 @@ fun ItemBeerFavorite(
 ) {
     Card(
         modifier = modifier
-            .padding(vertical = 4.dp, horizontal = 8.dp)
+            .padding(vertical = 4.dp)
             .fillMaxWidth()
             .clickable { onItemClick(beerDetails) },
         shape = RoundedCornerShape(12.dp),

@@ -1,12 +1,16 @@
-package com.blumenstreetdoo.nora_pub.ui.favorite
+package com.blumenstreetdoo.nora_pub.ui.profile
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
@@ -23,13 +27,24 @@ fun FavoritesScreen(
     onItemClick: (BeerDetails) -> Unit,
     onIconFavoriteClick: (FavoriteBeer) -> Unit
 ) {
-    when (state) {
-        is FavoriteScreenState.Loading -> LoadingState()
-        is FavoriteScreenState.Content -> ContentState(state.favorites, onItemClick, onIconFavoriteClick)
-        is FavoriteScreenState.Error -> ErrorState(text = state.message)
-        is FavoriteScreenState.Empty -> ErrorState(text = stringResource(R.string.no_favorites_message))
-    }
 
+    Column (modifier = Modifier.padding(16.dp)) {
+        when (state) {
+            is FavoriteScreenState.Loading -> LoadingState()
+            is FavoriteScreenState.Error -> ErrorState(text = state.message)
+
+            is FavoriteScreenState.Empty -> ErrorState(
+                text = stringResource(R.string.no_favorites_message),
+                isPositive = true
+            )
+
+            is FavoriteScreenState.Content -> ContentState(
+                state.favorites,
+                onItemClick,
+                onIconFavoriteClick
+            )
+        }
+    }
 }
 
 @Composable
@@ -38,6 +53,12 @@ fun ContentState(
     onItemClick: (BeerDetails) -> Unit,
     onIconFavoriteClick: (FavoriteBeer) -> Unit
 ) {
+    Text(
+        text = stringResource(R.string.my_favorite_craft_beer),
+        style = MaterialTheme.typography.headlineSmall,
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
+
     LazyColumn {
         items(favorites) { favBeer ->
             ItemBeerFavorite(
@@ -57,7 +78,7 @@ fun FavoritesScreenPreview() {
     MaterialTheme(
         colorScheme = NoraColors,
         typography = NoraTypography,
-    )  {
-        FavoritesScreen(FavoriteScreenState.Loading, {}, {})
+    ) {
+        FavoritesScreen(FavoriteScreenState.Empty, {}, {})
     }
 }
