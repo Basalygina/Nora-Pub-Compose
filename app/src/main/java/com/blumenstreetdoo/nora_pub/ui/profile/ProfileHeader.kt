@@ -41,11 +41,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
 
 @Composable
 fun ProfileHeader(
@@ -84,20 +86,19 @@ fun ProfileHeader(
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(photoPath)
-                            .placeholder(R.drawable.ic_profile_outlined)
-                            .error(R.drawable.ic_profile_outlined)
+                            .placeholder(R.drawable.ic_profile_placeholder)
+                            .error(R.drawable.ic_profile_placeholder)
                             .crossfade(true)
                             .build(),
                         contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
                     )
                 } else {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_profile_outlined),
+                        painter = painterResource(id = R.drawable.ic_profile_placeholder),
                         contentDescription = null,
-                        tint = NoraColors.secondary,
-                        modifier = Modifier.fillMaxSize(0.8f)
+                        tint = Color.Unspecified,
+                        modifier = Modifier.fillMaxSize()
                     )
                 }
             }
@@ -109,7 +110,6 @@ fun ProfileHeader(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (isEditingName) {
                         // Inline editing of user name
-
                         BasicTextField(
                             value = editedName,
                             onValueChange = { editedName = it },
@@ -139,7 +139,6 @@ fun ProfileHeader(
                         }
                     } else {
                         // Display user name
-
                         Text(
                             text = userName ?: stringResource(R.string.newbie),
                             style = MaterialTheme.typography.headlineMedium,
@@ -183,5 +182,23 @@ fun ProfileHeader(
                 )
             }
         }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun HeaderPreview() {
+    MaterialTheme(
+        colorScheme = NoraColors,
+        typography = NoraTypography,
+    ) {
+        ProfileHeader(
+            modifier = Modifier,
+            userName = "User123",
+            photoPath = "",
+            onSaveName = {},
+            onPhotoClick = {},
+            onOpenNotifications = {},
+        )
     }
 }

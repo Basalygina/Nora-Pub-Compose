@@ -5,6 +5,7 @@
     <string name="back">Back</string>
     <string name="save">Save</string>
     <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
     <string name="details">Details</string>
     <string name="clear">Clear</string>
     <string name="retry">RETRY</string>
@@ -72,11 +73,13 @@
     <string name="choose_avatar">Choose avatar</string>
     <string name="from_gallery">Choose from gallery</string>
     <string name="take_photo">Take photo</string>
+
     <string name="notification_settings">Notification settings</string>
     <string name="notifications_hint">Get notified about news and events?</string>
     <string name="latest_news">Latest news</string>
     <string name="events">Upcoming events</string>
-    <string name="permission_denied">Permission denied. Notifications will not work.</string>
+    <string name="notifications_permission_denied">Permission denied. Notifications will not work.</string>
+    <string name="camera_permission_denied">Permission denied. Camera permission required.</string>
     <string name="subscribed_news">Subscribed to news!</string>
     <string name="error_subscribe_news">Error subscribing to news</string>
     <string name="subscribed_events">Subscribed to events!</string>

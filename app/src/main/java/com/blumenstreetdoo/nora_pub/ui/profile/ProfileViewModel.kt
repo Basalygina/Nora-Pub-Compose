@@ -103,6 +103,7 @@ class ProfileViewModel(
         }
     }
 
+    // extension for FCM subscription
     private fun Flow<Pair<Boolean, Boolean>>.handleTopic(topic: String) =
         distinctUntilChanged()
             .onEach { (subscribed, granted) ->

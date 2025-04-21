@@ -13,8 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.blumenstreetdoo.nora_pub.R
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
+import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
 
 @Composable
 fun NotificationSettings(
@@ -28,7 +31,7 @@ fun NotificationSettings(
     Column(modifier = modifier) {
         Text(
             text = stringResource(R.string.notifications_hint),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -62,5 +65,23 @@ fun NotificationSettings(
                 }
             }
         }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun NotificationSettingsPreview() {
+    MaterialTheme(
+        colorScheme = NoraColors,
+        typography = NoraTypography,
+    ) {
+        NotificationSettings(
+            subscribeNews = false,
+            subscribeEvents = true,
+            onCheckedChange = { _, _ -> },
+            modifier = Modifier,
+            showSaveButton = true,
+            onSave = {},
+        )
     }
 }

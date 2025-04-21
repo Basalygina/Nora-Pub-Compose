@@ -31,6 +31,8 @@ fun ProfileScreen(
     favoriteViewModel: FavoriteViewModel,
     onItemClick: (BeerDetails) -> Unit,
     onIconFavoriteClick: (FavoriteBeer) -> Unit,
+    onPickFromGallery: () -> Unit,
+    onTakePhoto: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val profileState by profileViewModel.state.collectAsState()
@@ -113,4 +115,12 @@ fun ProfileScreen(
             }
         )
     }
+    if (showPhotoOptions) {
+        PhotoOptionsDialog(
+            onDismiss = { showPhotoOptions = false },
+            onPickFromGallery = onPickFromGallery,
+            onTakePhoto = onTakePhoto
+        )
+    }
+
 }
