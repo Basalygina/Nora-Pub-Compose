@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
@@ -21,7 +22,12 @@ import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
 import com.blumenstreetdoo.nora_pub.utils.copyUriToInternalFile
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
+import com.canhub.cropper.CropImageView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
@@ -29,6 +35,23 @@ import java.io.File
 class ProfileFragment : Fragment() {
     private val favoriteViewModel: FavoriteViewModel by activityViewModel<FavoriteViewModel>()
     private val profileViewModel: ProfileViewModel by viewModel()
+
+    private var currentPhotoUri: Uri? = null
+
+    private val cropLauncher = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful) {
+            result.uriContent?.let { croppedUri ->
+                profileViewModel.savePhotoPath(croppedUri.toString())
+            }
+        } else {
+            Snackbar.make(
+                requireView(),
+                "Crop error: ${result.error?.message}",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+    }
+
 
     // launcher for notification permission
     private val notificationPermissionLauncher = registerForActivityResult(
@@ -49,10 +72,10 @@ class ProfileFragment : Fragment() {
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let { pickedUri ->
-            // copy into internal storage
-            val internalUri = requireContext().copyUriToInternalFile(pickedUri)
-            // save local Uri in DataStore
-            profileViewModel.savePhotoPath(internalUri.toString())
+            lifecycleScope.launch {
+                val internalUri = requireContext().copyUriToInternalFile(pickedUri)
+                launchCrop(internalUri)
+            }
         }
     }
 
@@ -77,11 +100,24 @@ class ProfileFragment : Fragment() {
         ActivityResultContracts.TakePicture()
     ) { success ->
         if (success) {
-            currentPhotoUri?.let { profileViewModel.savePhotoPath(it.toString()) }
+            currentPhotoUri?.let { uri ->
+                launchCrop(uri)
+            }
         }
     }
 
-    private var currentPhotoUri: Uri? = null
+    private fun launchCrop(uri: Uri) {
+        val cropOptions = CropImageContractOptions(
+            uri,
+            CropImageOptions().apply {
+                cropShape = CropImageView.CropShape.OVAL
+                aspectRatioX = 1
+                aspectRatioY = 1
+                fixAspectRatio = true
+            }
+        )
+        cropLauncher.launch(cropOptions)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

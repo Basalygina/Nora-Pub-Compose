@@ -77,6 +77,7 @@ dependencies {
     annotationProcessor(libs.glide.compiler)
     implementation(libs.viewpager2)
     implementation(libs.coil.compose)
+    implementation(libs.image.cropper)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
@@ -93,5 +94,4 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.storage)
-
 }
