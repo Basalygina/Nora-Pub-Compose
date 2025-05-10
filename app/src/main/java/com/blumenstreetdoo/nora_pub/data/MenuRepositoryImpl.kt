@@ -10,12 +10,13 @@ import kotlinx.coroutines.flow.flow
 
 class MenuRepositoryImpl : MenuRepository {
     override fun getCraftList(): Flow<Resource<List<Beer>>> = flow {
-        emit(Resource.Success(generateMockCraftList())) // add ?: emptyList()
+        val beers = generateMockCraftList() ?: emptyList()
+        emit(Resource.Success(beers))
     }
 
     override fun getBeerById(id: String): Resource<Beer> {
-        val event = generateMockCraftList().find { it.id == id }
-        return event?.let { Resource.Success(it) } ?: Resource.Error("Event not found")
+        val beer = generateMockCraftList().find { it.id == id }
+        return beer?.let { Resource.Success(it) } ?: Resource.Error("Beer not found")
     }
 
     private fun generateMockCraftList(): List<Beer> = listOf(
