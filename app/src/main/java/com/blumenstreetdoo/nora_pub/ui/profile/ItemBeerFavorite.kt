@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,7 @@ import com.blumenstreetdoo.nora_pub.domain.models.Brewery
 import com.blumenstreetdoo.nora_pub.domain.models.FavoriteBeer
 import com.blumenstreetdoo.nora_pub.ui.common.BeerImageDp
 import com.blumenstreetdoo.nora_pub.ui.common.BeerInfoSection
+import com.blumenstreetdoo.nora_pub.ui.common.TestTags
 
 @Composable
 fun ItemBeerFavorite(
@@ -41,7 +43,8 @@ fun ItemBeerFavorite(
         modifier = modifier
             .padding(vertical = 4.dp)
             .fillMaxWidth()
-            .clickable { onItemClick(beerDetails) },
+            .clickable { onItemClick(beerDetails) }
+            .testTag("${TestTags.FAVORITE_ITEM}_${favBeer.id}"),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -85,7 +88,8 @@ fun ItemBeerFavorite(
                     contentDescription = "Favorite",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { onIconFavoriteClick(favBeer) },
+                        .clickable { onIconFavoriteClick(favBeer) }
+                        .testTag("${TestTags.FAVORITE_ITEM_HEART_ICON}_${favBeer.id}"),
                 )
                 if (!beerDetails.note.isNullOrEmpty()) {
                     Image(
@@ -93,6 +97,7 @@ fun ItemBeerFavorite(
                         contentDescription = "Note",
                         modifier = Modifier
                             .size(24.dp)
+                            .testTag("${TestTags.FAVORITE_ITEM_NOTE_ICON}_${favBeer.id}")
                     )
                 }
             }
