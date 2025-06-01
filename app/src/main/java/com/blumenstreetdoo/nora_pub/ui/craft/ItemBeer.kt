@@ -28,9 +28,9 @@ import com.blumenstreetdoo.nora_pub.domain.models.Beer
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.Brewery
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
-import com.blumenstreetdoo.nora_pub.ui.common.BeerImageDp
 import com.blumenstreetdoo.nora_pub.ui.common.BeerInfoSection
 import com.blumenstreetdoo.nora_pub.ui.common.TestTags
+import com.blumenstreetdoo.nora_pub.ui.common.image.BeerImageDp
 
 @Composable
 fun ItemBeer(
@@ -71,9 +71,10 @@ fun ItemBeer(
             )
 
             // Beer Info
-            BeerInfoSection(beerDetails = beerDetails, modifier = Modifier
-                .weight(1f)
-                .padding(start = 16.dp)
+            BeerInfoSection(
+                beerDetails = beerDetails, modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp)
             )
 
             // Price and volume

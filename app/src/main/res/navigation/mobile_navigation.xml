@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.blumenstreetdoo.nora_pub.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
+        android:label="@string/title_home">
         <action
             android:id="@+id/action_navigation_home_to_eventDetailsFragment"
             app:destination="@id/eventDetailsFragment" />
@@ -25,8 +23,7 @@
     <fragment
         android:id="@+id/navigation_craft"
         android:name="com.blumenstreetdoo.nora_pub.ui.craft.CraftFragment"
-        android:label="@string/title_craft"
-        tools:layout="@layout/fragment_craft">
+        android:label="@string/title_craft">
         <action
             android:id="@+id/action_navigation_craft_to_beerDetailsFragment"
             app:destination="@id/beerDetailsFragment" />
@@ -43,9 +40,8 @@
 
     <fragment
         android:id="@+id/eventDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.home.events.EventDetailsFragment"
-        android:label="@string/details"
-        tools:layout="@layout/details_event">
+        android:name="com.blumenstreetdoo.nora_pub.ui.event_details.EventDetailsFragment"
+        android:label="@string/details">
         <argument
             android:name="event"
             app:argType="com.blumenstreetdoo.nora_pub.domain.models.Event" />
@@ -53,9 +49,8 @@
 
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.home.news.NewsDetailsFragment"
-        android:label="@string/details"
-        tools:layout="@layout/details_news">
+        android:name="com.blumenstreetdoo.nora_pub.ui.news_details.NewsDetailsFragment"
+        android:label="@string/details">
         <argument
             android:name="news"
             app:argType="com.blumenstreetdoo.nora_pub.domain.models.News" />
@@ -63,16 +58,15 @@
 
     <fragment
         android:id="@+id/beerDetailsFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.details.BeerDetailsFragment"
-        android:label="@string/details"
-        tools:layout="@layout/details_beer">
+        android:name="com.blumenstreetdoo.nora_pub.ui.beer_details.BeerDetailsFragment"
+        android:label="@string/details">
         <argument
             android:name="beerId"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.blumenstreetdoo.nora_pub.ui.home.menu.MenuFragment"
+        android:name="com.blumenstreetdoo.nora_pub.ui.menu.MenuFragment"
         android:label="@string/menu_lowercase" />
 
 </navigation>

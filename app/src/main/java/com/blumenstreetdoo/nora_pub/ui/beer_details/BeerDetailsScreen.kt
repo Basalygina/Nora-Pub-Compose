@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.details
+package com.blumenstreetdoo.nora_pub.ui.beer_details
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.Brewery
-import com.blumenstreetdoo.nora_pub.ui.common.BeerImageScreenPerc
+import com.blumenstreetdoo.nora_pub.ui.common.image.BeerImageScreenPerc
 import com.blumenstreetdoo.nora_pub.ui.common.BeerInfoSection
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
 

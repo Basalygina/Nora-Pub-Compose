@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.details
+package com.blumenstreetdoo.nora_pub.ui.beer_details
 
 import android.annotation.SuppressLint
 import android.content.Intent

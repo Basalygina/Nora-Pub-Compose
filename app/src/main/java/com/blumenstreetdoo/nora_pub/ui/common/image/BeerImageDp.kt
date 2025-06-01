@@ -1,4 +1,4 @@
-package com.blumenstreetdoo.nora_pub.ui.common
+package com.blumenstreetdoo.nora_pub.ui.common.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -17,19 +16,16 @@ import coil.request.ImageRequest
 import com.blumenstreetdoo.nora_pub.R
 
 @Composable
-fun BeerImageScreenPerc(
+fun BeerImageDp(
     modifier: Modifier = Modifier,
     imageUrl: String?,
     placeholderRes: Int = R.drawable.placeholder_nora_large,
-    screenPercentage: Float = 0.4f,
     contentScale: ContentScale = ContentScale.Crop,
-    padding: Int = 0,
-    cornerRadius: Int = 0,
+    imageSize: Int = 60,
+    cornerRadius: Int = 8,
+    paddingStart: Int = 0,
+    paddingTop: Int = 0,
     ) {
-    val configuration = LocalConfiguration.current
-    val screenWidthDp = configuration.screenWidthDp.dp
-    val imageSize = screenWidthDp * screenPercentage
-
     if (!imageUrl.isNullOrEmpty()) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -41,8 +37,8 @@ fun BeerImageScreenPerc(
             contentDescription = null,
             contentScale = contentScale,
             modifier = modifier
-                .size(imageSize)
-                .padding(padding.dp)
+                .size(imageSize.dp)
+                .padding(start = paddingStart.dp, top = paddingTop.dp)
                 .clip(RoundedCornerShape(cornerRadius.dp))
         )
     } else {
@@ -51,9 +47,10 @@ fun BeerImageScreenPerc(
             contentDescription = null,
             contentScale = contentScale,
             modifier = modifier
-                .size(imageSize)
-                .padding(padding.dp)
+                .size(imageSize.dp)
+                .padding(start = paddingStart.dp, top = paddingTop.dp)
                 .clip(RoundedCornerShape(cornerRadius.dp))
         )
     }
+
 }

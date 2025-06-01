@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraTypography
@@ -22,21 +21,17 @@ class CraftFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_craft, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val composeView = view.findViewById<ComposeView>(R.id.compose_view)
-        composeView.setContent {
-            MaterialTheme(
-                colorScheme = NoraColors,
-                typography = NoraTypography,
-            ) {
-                CraftScreen(
-                    craftViewModel = craftViewModel,
-                    onBeerClick = { beerDetails -> onBeerClick(beerDetails) },
-                )
+        return ComposeView(requireContext()).apply {
+            setContent {
+                MaterialTheme(
+                    colorScheme = NoraColors,
+                    typography = NoraTypography,
+                ) {
+                    CraftScreen(
+                        craftViewModel = craftViewModel,
+                        onBeerClick = { beerDetails -> onBeerClick(beerDetails) },
+                    )
+                }
             }
         }
     }
