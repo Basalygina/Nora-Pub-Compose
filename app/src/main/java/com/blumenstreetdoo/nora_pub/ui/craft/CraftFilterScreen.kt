@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -142,7 +143,9 @@ fun CraftFilterScreen(
                             (defaultFilter.maxIbu ?: MAX_IBU).toFloat()
                     onReset()
                 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .testTag("ResetButton"),
                 enabled = !isDefaultFilter
             ) {
                 Text(stringResource(R.string.reset))
@@ -150,7 +153,9 @@ fun CraftFilterScreen(
             Spacer(modifier = Modifier.width(16.dp))
             Button(
                 onClick = { onApply(currentFilter) },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .testTag("ApplyButton"),
                 enabled = isFilterChanged && !isDefaultFilter
             ) {
                 Text(stringResource(R.string.apply))

@@ -1,6 +1,5 @@
 package com.blumenstreetdoo.nora_pub.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blumenstreetdoo.nora_pub.domain.api.EventNewsInteractor
@@ -17,7 +16,6 @@ class HomeViewModel(
     val homeScreenState: StateFlow<HomeScreenState> = _homeScreenState
 
     init {
-        Log.d("NTest", "HomeViewModel init")
         loadData()
     }
 

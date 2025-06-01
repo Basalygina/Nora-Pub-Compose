@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import com.blumenstreetdoo.nora_pub.R
 import com.blumenstreetdoo.nora_pub.domain.models.BeerDetails
 import com.blumenstreetdoo.nora_pub.domain.models.DrinkType
 import com.blumenstreetdoo.nora_pub.ui.common.SearchView
+import com.blumenstreetdoo.nora_pub.ui.common.TestTags
 import com.blumenstreetdoo.nora_pub.ui.theme.NoraColors
 import kotlinx.coroutines.launch
 
@@ -114,12 +116,14 @@ fun CraftScreen(
                     Tab(
                         selected = selectedTabIndex == 0,
                         onClick = { selectedTabIndex = 0 },
-                        text = { Text(stringResource(R.string.title_beer_on_tap)) }
+                        text = { Text(stringResource(R.string.title_beer_on_tap)) },
+                        modifier = Modifier.testTag(TestTags.TAB_TAP_BEER)
                     )
                     Tab(
                         selected = selectedTabIndex == 1,
                         onClick = { selectedTabIndex = 1 },
-                        text = { Text(stringResource(R.string.title_cans_in_fridge)) }
+                        text = { Text(stringResource(R.string.title_cans_in_fridge)) },
+                        modifier = Modifier.testTag(TestTags.TAB_CANNED_BEER)
                     )
                 }
                 HorizontalPager(

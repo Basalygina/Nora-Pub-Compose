@@ -38,6 +38,11 @@
     <string name="url_nora_on_instagram">https://www.instagram.com/norapub.pg/</string>
     <string name="url_nora_on_google_maps">https://maps.app.goo.gl/M55WD4mBf34T6ffC6</string>
 
+    <!-- Languages -->
+    <string name="language_montenegrin">Crnogorski/Srpski</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Русский</string>
+
     <!-- Fragment Craft -->
     <string name="by_brewery">by %s</string>
     <string name="ABV">%.1f%% ABV</string>
@@ -114,5 +119,9 @@
     <string name="time_out_of_range">Time must be within the Nora\'s working hours (16:00–23:30)</string>
     <string name="no_table_available">Unfortunately, there are no available tables at the selected date and time</string>
     <string name="profile_photo">Profile photo</string>
+
+    <!-- Fragment News -->
+    <string name="see_all_news">See all news</string>
+    <string name="all_news">All news</string>
 
 </resources>
